@@ -18,6 +18,9 @@ Všeky issues (feature, bug, docs a enchasment) sú spravované cez príslušné
 Celá špecifikácia a dokumentácia k projektu sa nachádza v 
 [GitHub Wiki](https://github.com/fiit-dbs-2019/dbs2019-project-assignment-nightgaunt/wiki).
 
+V projekte používame codestyle poďla [PEP8](https://www.python.org/dev/peps/pep-0008/) a na správu codebase
+aplikujeme techniku [git-flow](https://datasift.github.io/gitflow/IntroducingGitFlow.html).
+
 ## Inštalácia
 
 Minimálne požiadavky:
