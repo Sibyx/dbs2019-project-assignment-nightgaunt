@@ -43,9 +43,9 @@ pipenv install
 
 ## Knižnice
 
-- [Django](https://www.djangoproject.com/).
-- [SemanticUI](https://semantic-ui.com/).
-- [python-dotenv](https://github.com/theskumar/python-dotenv).
+- [Django](https://www.djangoproject.com/)
+- [SemanticUI](https://semantic-ui.com/)
+- [python-dotenv](https://github.com/theskumar/python-dotenv)
 
 ---
 S ❤️ Jakub Dubec (c) 2019
