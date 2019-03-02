@@ -43,9 +43,11 @@ pipenv install
 
 ## Knižnice
 
-- [Django](https://www.djangoproject.com/)
-- [SemanticUI](https://semantic-ui.com/)
-- [python-dotenv](https://github.com/theskumar/python-dotenv)
+- [Django](https://www.djangoproject.com/): Back-end framework
+- [SemanticUI](https://semantic-ui.com/): Front-end framework
+- [python-dotenv](https://github.com/theskumar/python-dotenv): Konfigurácia
+- [django-role-permissions](https://github.com/vintasoftware/django-role-permissions): RBAC
+- [django2-semantic-ui](https://github.com/franklintiel/django2-semantic-ui): Management front-end dependencies.
 
 ---
 S ❤️ Jakub Dubec (c) 2019

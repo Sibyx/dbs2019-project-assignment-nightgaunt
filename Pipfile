@@ -7,6 +7,8 @@ verify_ssl = true
 django = ">=2.1.5"
 python-dotenv = "*"
 psycopg2-binary = "==2.*"
+django-role-permissions = "==2.*"
+django2-semantic-ui = "==1.*"
 
 [dev-packages]
 

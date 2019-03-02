@@ -2,3 +2,5 @@
 *.DS_Store
 *.pyc
 *.log
+*.mwb.bak
+.env
