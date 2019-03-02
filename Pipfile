@@ -9,6 +9,7 @@ python-dotenv = "*"
 psycopg2-binary = "==2.*"
 django-role-permissions = "==2.*"
 django2-semantic-ui = "==1.*"
+Pillow = "*"
 
 [dev-packages]
 
