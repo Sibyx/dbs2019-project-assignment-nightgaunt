@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "32d0f1a9626803d55630a3a7c2db7dd4bdaa5d22f82c6ebf5ed8468f2c1564de"
+            "sha256": "af58142d0f524e561d8248e08d57cfdb62a51d403d86c4159a19cc6e9f6f60dc"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -39,11 +39,9 @@
             "version": "==2.2.1"
         },
         "django2-semantic-ui": {
-            "hashes": [
-                "sha256:a5efe89908c11e231dcea7cad249fd7bf629f7189d5621cd0d3bc82d154a9676"
-            ],
-            "index": "pypi",
-            "version": "==1.2.2"
+            "editable": true,
+            "git": "https://github.com/Sibyx/django2-semantic-ui.git",
+            "ref": "5ebb915476ab4212e9b9173e15bc883c11534fb9"
         },
         "pillow": {
             "hashes": [

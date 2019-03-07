@@ -1,0 +1,33 @@
+{% extends '_layouts/registration.html' %}
+
+{% block body %}
+	<div class="ui middle aligned center aligned grid">
+		<div class="column">
+			<h2 class="ui teal header">MDNS</h2>
+
+			<form class="ui large form" method="post">
+				{% csrf_token %}
+
+				{{ form.non_field_errors }}
+
+				{% for hidden_field in form.hidden_fields %}
+					{{ hidden_field.errors }}
+					{{ hidden_field }}
+				{% endfor %}
+
+				<div class="ui stacked segment">
+					{% for field in form.visible_fields %}
+						<div class="field">
+							{{ field.label_tag }}
+							{{ field.errors }}
+							{{ field }}
+							{{ field.help_text }}
+						</div>
+					{% endfor %}
+					<div class="ui fluid large teal submit button">Login</div>
+				</div>
+				<div class="ui error message"></div>
+			</form>
+		</div>
+	</div>
+{% endblock %}
