@@ -17,15 +17,15 @@ class User(BaseModel, AbstractBaseUser, PermissionsMixin):
     surname = models.CharField(max_length=50)
 
     USERNAME_FIELD = 'email'
+    EMAIL_FIELD = 'email'
 
     objects = UserManager()
+    objects_all = UserManager(alive_only=False)
 
-    @property
-    def full_name(self) -> str:
+    def get_full_name(self) -> str:
         return f'{self.name} {self.surname}'
 
-    @property
-    def short_name(self) -> str:
+    def get_short_name(self) -> str:
         return self.name
 
     def __str__(self):
