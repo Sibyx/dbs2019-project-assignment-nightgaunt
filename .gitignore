@@ -4,3 +4,5 @@
 *.log
 *.mwb.bak
 .env
+/static/dsu
+/static/admin

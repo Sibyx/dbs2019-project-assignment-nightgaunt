@@ -8,8 +8,8 @@ django = ">=2.1.5"
 python-dotenv = "*"
 psycopg2-binary = "==2.*"
 django-role-permissions = "==2.*"
-django2-semantic-ui = "==1.*"
 Pillow = "*"
+django2-semantic-ui = {editable = true,git = "https://github.com/Sibyx/django2-semantic-ui.git",ref = "develop"}
 
 [dev-packages]
 
