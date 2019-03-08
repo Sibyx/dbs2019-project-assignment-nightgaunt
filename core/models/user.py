@@ -28,5 +28,9 @@ class User(BaseModel, AbstractBaseUser, PermissionsMixin):
     def get_short_name(self) -> str:
         return self.name
 
+    @property
+    def is_staff(self):
+        return self.is_superuser
+
     def __str__(self):
         return self.email
