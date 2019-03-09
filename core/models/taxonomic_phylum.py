@@ -12,3 +12,6 @@ class TaxonomicPhylum(BaseModel):
 
     kingdom = models.ForeignKey(TaxonomicKingdom, on_delete=models.CASCADE)
     name = models.CharField(max_length=45, unique=True)
+
+    def __str__(self):
+        return self.name
