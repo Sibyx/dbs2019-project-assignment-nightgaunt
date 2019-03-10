@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     'django_semantic_ui',
 
     'core',
-    'web'
+    'web',
+    'importer'
 ]
 
 MIDDLEWARE = [

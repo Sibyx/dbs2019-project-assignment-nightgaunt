@@ -10,3 +10,6 @@ class TaxonomicKingdom(BaseModel):
         db_table = 'taxonomic_kingdoms'
 
     name = models.CharField(max_length=45, unique=True)
+
+    def __str__(self):
+        return self.name

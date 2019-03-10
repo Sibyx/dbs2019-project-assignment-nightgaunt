@@ -12,3 +12,6 @@ class TaxonomicFamily(BaseModel):
 
     taxonomic_order = models.ForeignKey(TaxonomicOrder, on_delete=models.CASCADE)
     name = models.CharField(max_length=45, unique=True)
+
+    def __str__(self):
+        return self.name
