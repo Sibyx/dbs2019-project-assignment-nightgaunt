@@ -12,6 +12,7 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument('--file', nargs='?', type=str, help="Path to Species+ CSV file", required=True)
+        parser.add_argument('--source', nargs='?', type=str, help="Data source of input file", required=True, default='species_plus')
 
     def handle(self, *args, **options):
         if not Path(options['file']).is_file():
