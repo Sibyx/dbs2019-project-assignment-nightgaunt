@@ -1,4 +1,26 @@
-{% extends '_layouts/registration.html' %}
+{% extends '_layouts/skeleton.html' %}
+
+{% block title %}{{ _("Login") }}{% endblock %}
+
+{% block stylesheets %}
+	<style type="text/css">
+		body {
+			background-color: #DADADA;
+		}
+
+		body > .grid {
+			height: 100%;
+		}
+
+		.image {
+			margin-top: -100px;
+		}
+
+		.column {
+			max-width: 450px;
+		}
+	</style>
+{% endblock %}
 
 {% block body %}
 	<div class="ui middle aligned center aligned grid">
