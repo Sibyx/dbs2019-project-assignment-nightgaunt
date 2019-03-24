@@ -1,0 +1,29 @@
+{
+	"name": "mdns-web",
+	"version": "1.0.0",
+	"main": "static/js/app.js",
+	"repository": "git@github.com:fiit-dbs-2019/dbs2019-project-assignment-nightgaunt.git",
+	"author": "Jakub Dubec <jakub.dubec@gmail.com>",
+	"license": "MIT",
+	"dependencies": {
+		"bootstrap": "^4.3.1",
+		"jquery": "^3.3.1",
+		"mini-css-extract-plugin": "^0.5.0",
+		"node-sass": "^4.11.0",
+		"popper.js": "^1.14.7",
+		"precss": "^4.0.0"
+	},
+	"devDependencies": {
+		"autoprefixer": "^9.5.0",
+		"css-loader": "^2.1.1",
+		"postcss-loader": "^3.0.0",
+		"sass-loader": "^7.1.0",
+		"style-loader": "^0.23.1",
+		"webpack": "^4.29.6",
+		"webpack-cli": "^3.3.0"
+	},
+	"scripts": {
+		"build": "webpack --mode production --config webpack.config.js",
+		"watch": "webpack --mode development --config webpack.config.js --watch"
+	}
+}

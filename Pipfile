@@ -9,7 +9,6 @@ python-dotenv = "*"
 psycopg2-binary = "==2.*"
 django-role-permissions = "==2.*"
 Pillow = "*"
-django2-semantic-ui = {editable = true,git = "https://github.com/Sibyx/django2-semantic-ui.git",ref = "develop"}
 
 [dev-packages]
 

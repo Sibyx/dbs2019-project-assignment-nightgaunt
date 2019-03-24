@@ -7,3 +7,5 @@
 /static/dsu
 /static/admin
 /tmp
+/node_modules
+/static/bundle.js
