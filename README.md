@@ -55,6 +55,7 @@ pipenv install
 - [python-dotenv](https://github.com/theskumar/python-dotenv): Konfigurácia
 - [django-role-permissions](https://github.com/vintasoftware/django-role-permissions): RBAC
 - [django2-semantic-ui](https://github.com/franklintiel/django2-semantic-ui): Management front-end dependencies.
+- [python-qrcode](https://github.com/lincolnloop/python-qrcode): QR code generator
 
 ---
 S ❤️ Jakub Dubec (c) 2019

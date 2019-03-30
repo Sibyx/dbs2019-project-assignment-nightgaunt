@@ -7,3 +7,6 @@
 /static/dsu
 /static/admin
 /tmp
+/node_modules
+/static/bundle.js
+/static/bundle.js.map

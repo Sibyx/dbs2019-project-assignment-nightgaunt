@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rolepermissions',
-    'django_semantic_ui',
 
     'core',
     'web',
@@ -143,4 +142,3 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 
-JAVASCRIPT_PACKAGE_MANAGER = 'npm'
