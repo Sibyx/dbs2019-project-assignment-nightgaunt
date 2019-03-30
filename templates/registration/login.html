@@ -1,55 +1,102 @@
 {% extends '_layouts/skeleton.html' %}
 
+{% load i18n %}
+
 {% block title %}{{ _("Login") }}{% endblock %}
 
 {% block stylesheets %}
 	<style type="text/css">
-		body {
-			background-color: #DADADA;
-		}
-
-		body > .grid {
+		html, body {
 			height: 100%;
 		}
 
-		.image {
-			margin-top: -100px;
-		}
-
-		.column {
-			max-width: 450px;
+		body {
+			display: -ms-flexbox;
+			display: flex;
+			-ms-flex-align: center;
+			align-items: center;
 		}
 	</style>
 {% endblock %}
 
 {% block body %}
-	<div class="ui middle aligned center aligned grid">
-		<div class="column">
-			<h2 class="ui teal header">MDNS</h2>
 
-			<form class="ui large form" method="post">
-				{% csrf_token %}
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12 col-lg-4 mx-auto">
 
-				{{ form.non_field_errors }}
-
-				{% for hidden_field in form.hidden_fields %}
-					{{ hidden_field.errors }}
-					{{ hidden_field }}
-				{% endfor %}
-
-				<div class="ui stacked segment">
-					{% for field in form.visible_fields %}
-						<div class="field">
-							{{ field.label_tag }}
-							<div class="ui error message">{{ field.errors }}</div>
-							{{ field }}
-							{{ field.help_text }}
-						</div>
-					{% endfor %}
-					<button class="ui fluid large teal submit button" type="submit">Login</button>
+				<div class="text-center">
+					<i class="fas fa-bug fa-5x"></i>
+					<h1 class="h4 mb-3 font-weight-normal">MDNS</h1>
 				</div>
 
-			</form>
+				<form method="post">
+					{% csrf_token %}
+
+					{% for hidden_field in form.hidden_fields %}
+						{{ hidden_field }}
+					{% endfor %}
+
+					{% if form.non_field_errors %}
+						<div class="alert alert-danger" role="alert">
+							{% for error in form.non_field_errors %}
+								{{ error }}
+							{% endfor %}
+						</div>
+					{% endif %}
+
+					{% for field in form.visible_fields %}
+						<div class="form-group">
+							{{ field.label_tag }}
+
+							{% if form.is_bound %}
+								{% if field.errors %}
+									<input
+										type="{{ field.field.widget.input_type }}"
+										class="form-control is-invalid"
+										name="{{ field.html_name }}"
+										placeholder="{{ field.label }}"
+										value="{{ field.value|default_if_none:"" }}"
+										id="{{ field.id_for_label }}"
+									>
+									{% for error in field.errors %}
+										<div class="invalid-feedback">
+											{{ error }}
+										</div>
+									{% endfor %}
+								{% else %}
+									<input
+										type="{{ field.field.widget.input_type }}"
+										class="form-control is-valid"
+										name="{{ field.html_name }}"
+										placeholder="{{ field.label }}"
+										value="{{ field.value|default_if_none:"" }}"
+										id="{{ field.id_for_label }}"
+									>
+								{% endif %}
+							{% else %}
+								<input
+									type="{{ field.field.widget.input_type }}"
+									class="form-control"
+									name="{{ field.html_name }}"
+									placeholder="{{ field.label }}"
+									value="{{ field.value|default_if_none:"" }}"
+									id="{{ field.id_for_label }}"
+								>
+							{% endif %}
+
+							{% if field.help_text %}
+								<small class="form-text text-muted">{{ field.help_text }}</small>
+							{% endif %}
+						</div>
+					{% endfor %}
+
+					<button type="submit" class="btn btn-primary btn-block">
+						<i class="fas fa-sign-in-alt"></i> {% trans "Log in" %}
+					</button>
+				</form>
+
+			</div>
 		</div>
 	</div>
 {% endblock %}
