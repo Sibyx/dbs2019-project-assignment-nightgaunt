@@ -12,11 +12,15 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 import os
 
+from django.utils.translation import gettext_lazy as _
 from dotenv import load_dotenv
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ENV_FILE = os.path.join(BASE_DIR, '.env')
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locales'),
+)
 
 # .env
 if os.path.exists(ENV_FILE):
@@ -29,7 +33,7 @@ if os.path.exists(ENV_FILE):
 SECRET_KEY = 'io6fjs2oy$)f@xdiw5s*rko5w4vllov*)ukli1ax*w&^fwcn=f'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -118,12 +122,17 @@ AUTH_PASSWORD_VALIDATORS = [
 
 AUTH_USER_MODEL = 'core.User'
 
-LOGIN_REDIRECT_URL = '/admin/'
+LOGIN_REDIRECT_URL = '/dashboard/'
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
+
+LANGUAGES = [
+    ('en', _('English')),
+    ('sk', _('Slovak')),
+]
 
 TIME_ZONE = 'UTC'
 

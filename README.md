@@ -51,10 +51,9 @@ pipenv install
 ## Knižnice
 
 - [Django](https://www.djangoproject.com/): Back-end framework
-- [SemanticUI](https://semantic-ui.com/): Front-end framework
+- [Bootstrap](https://getbootstrap.com/): Front-end framework
 - [python-dotenv](https://github.com/theskumar/python-dotenv): Konfigurácia
 - [django-role-permissions](https://github.com/vintasoftware/django-role-permissions): RBAC
-- [django2-semantic-ui](https://github.com/franklintiel/django2-semantic-ui): Management front-end dependencies.
 - [python-qrcode](https://github.com/lincolnloop/python-qrcode): QR code generator
 
 ---
