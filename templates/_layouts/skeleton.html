@@ -9,9 +9,9 @@
 
 	<title>{% block title %}{% endblock %} - MDNS</title>
 
-	{% block stylesheets %}{% endblock %}
-
 	<script src="{% static 'bundle.js' %}"></script>
+
+	{% block head %}{% endblock %}
 </head>
 <body>
 

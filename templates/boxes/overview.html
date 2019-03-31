@@ -3,3 +3,48 @@
 {% load i18n %}
 
 {% block title %}{% trans 'Boxes' %}{% endblock %}
+
+{#https://stackoverflow.com/questions/42843001/bootstrap-table-wenzhixin-data-by-ajax#}
+{#https://stackoverflow.com/questions/33247486/bootstrap-table-json-from-ajax/33247990#}
+{#https://github.com/wenzhixin/bootstrap-table/issues/2289#}
+{#https://github.com/wenzhixin/bootstrap-table/issues/1236#}
+
+
+{% block content %}
+	<div class="container">
+
+		<div class="row">
+			<div class="col-lg-12">
+				<h1>{% trans 'Boxes' %}</h1>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-lg-12">
+				<table
+					class="table"
+					data-toggle="table"
+					data-search="true"
+					{#					data-ajax="ajaxRequest"#}
+					{#					data-side-pagination="server"#}
+					data-pagination="true"
+				>
+					<thead>
+					<tr>
+						<th data-field="uuid">{% trans 'UUID' %}</th>
+						<th data-field="name">{% trans 'Name' %}</th>
+						<th data-field="size">{% trans 'Size' %}</th>
+					</tr>
+					</thead>
+				</table>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block javascript %}
+	<script>
+		$(window).on('load', function () {
+		});
+	</script>
+{% endblock %}
