@@ -23,19 +23,23 @@
 			<div class="col-lg-12">
 				<table
 					class="table"
+					id="dataTable"
 					data-toggle="table"
 					data-search="true"
-					{#					data-ajax="ajaxRequest"#}
-					{#					data-side-pagination="server"#}
+					data-ajax="loadTable"
+					data-side-pagination="server"
 					data-pagination="true"
+					data-id-field="id"
+					data-unique-id="id"
 				>
 					<thead>
 					<tr>
-						<th data-field="uuid">{% trans 'UUID' %}</th>
-						<th data-field="name">{% trans 'Name' %}</th>
+						<th data-field="title">{% trans 'Title' %}</th>
+						<th data-field="description">{% trans 'Name' %}</th>
 						<th data-field="size">{% trans 'Size' %}</th>
 					</tr>
 					</thead>
+					<tbody></tbody>
 				</table>
 			</div>
 		</div>
@@ -44,7 +48,38 @@
 
 {% block javascript %}
 	<script>
+		$.ajaxSetup({
+			headers: {"X-CSRFToken": '{{csrf_token}}'}
+		});
+
+		function loadTable(params) {
+			console.log(params);
+
+			$.ajax({
+				type: "POST",
+				url: "{% url 'boxes-overview' %}",
+				dataType: "json",
+				success: function (data) {
+					console.log(data);
+
+					params.success({
+						"rows": data.rows,
+						"total": data.items
+					})
+				},
+				error: function (err) {
+					params.error(err);
+				}
+			})
+		}
+
+		$("#dataTable tbody").on('click', 'tr[data-uniqueid]', function (e) {
+			console.log($(this).data('uniqueid'));
+		});
+
 		$(window).on('load', function () {
 		});
+
+
 	</script>
 {% endblock %}
