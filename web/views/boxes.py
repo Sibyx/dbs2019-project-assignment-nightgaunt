@@ -21,7 +21,7 @@ def overview(request):
                 "title": box.title,
                 "description": box.description,
                 "size": box.specimen_set.count(),
-                "detail-url": reverse('boxes-detail', None, [box.id])
+                "url": reverse('boxes-detail', None, [box.id])
             })
 
         return JsonResponse(response)
@@ -29,5 +29,6 @@ def overview(request):
     return render(request, 'boxes/overview.html')
 
 
+@login_required
 def detail(request, id):
     return render(request, 'boxes/detail.html')

@@ -1,6 +1,7 @@
 {% extends '_layouts/skeleton.html' %}
 
 {% load i18n %}
+{% load in_list %}
 
 {% block body %}
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
@@ -17,17 +18,18 @@
 			<ul class="navbar-nav mr-auto">
 
 				{# Dashboard #}
-				<li class="nav-item {% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}">
+				<li class="nav-item {% if request.resolver_match.url_name|in_list:"dashboard" %}active{% endif %}">
 					<a class="nav-link" href="{% url 'dashboard' %}">{% trans "Dashboard" %}</a>
 				</li>
 
 				{# Boxes #}
-				<li class="nav-item {% if request.resolver_match.url_name == 'boxes-overview' %}active{% endif %}">
+				<li
+					class="nav-item {% if request.resolver_match.url_name|in_list:"boxes-overview;boxes-detail" %}active{% endif %}">
 					<a class="nav-link" href="{% url 'boxes-overview' %}">{% trans "Boxes" %}</a>
 				</li>
 
 				{# Specimens #}
-				<li class="nav-item {% if request.resolver_match.url_name == 'specimens-overview' %}active{% endif %}">
+				<li class="nav-item {% if request.resolver_match.url_name|in_list:'specimens-overview' %}active{% endif %}">
 					<a class="nav-link" href="{% url 'specimens-overview' %}">{% trans "Specimens" %}</a>
 				</li>
 			</ul>

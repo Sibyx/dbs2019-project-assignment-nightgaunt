@@ -27,6 +27,7 @@
 					data-toggle="table"
 					data-search="true"
 					data-ajax="loadTable"
+					data-row-attributes="rowAttributes"
 					data-side-pagination="server"
 					data-pagination="true"
 					data-id-field="id"
@@ -73,13 +74,14 @@
 			})
 		}
 
-		$("#dataTable tbody").on('click', 'tr[data-uniqueid]', function (e) {
-			console.log($(this).data('uniqueid'));
+		function rowAttributes(row, index) {
+			return {
+				'data-url': row.url
+			}
+		}
+
+		$("#dataTable tbody").on('click', 'tr[data-url]', function (e) {
+			window.location = $(this).data('url');
 		});
-
-		$(window).on('load', function () {
-		});
-
-
 	</script>
 {% endblock %}
