@@ -4,13 +4,15 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [packages]
-django = ">=2.1.5"
+django = "==2.2.*"
 python-dotenv = "*"
 psycopg2-binary = "==2.*"
 django-role-permissions = "==2.*"
 Pillow = "*"
 
 [dev-packages]
+fabric = "==2.*"
+fabric-digitalocean = "*"
 
 [requires]
 python_version = "3.7"
