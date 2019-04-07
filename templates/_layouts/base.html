@@ -35,11 +35,24 @@
 			</ul>
 
 			<ul class="navbar-nav ml-auto">
-				<li class="nav-item">
-					<a class="nav-link waves-effect waves-light">
-						<i class="fab fa-twitter"></i>
-					</a>
-				</li>
+				{% if user.is_authenticated %}
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+							 aria-haspopup="true" aria-expanded="false">
+							{{ user.email }}
+						</a>
+
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="{% url 'logout' %}">{% trans "Log out" %}</a>
+						</div>
+					</li>
+				{% else %}
+					<li class="nav-item">
+						<a class="nav-link" href="{% url 'login' %}">
+							<i class="fab fa-sign-in-alt"></i> {% trans "Log in" %}
+						</a>
+					</li>
+				{% endif %}
 			</ul>
 		</div>
 	</nav>
