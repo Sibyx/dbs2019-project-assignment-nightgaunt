@@ -9,6 +9,7 @@ urlpatterns = [
     path('boxes/detail/<uuid:id>/', boxes.detail, name='boxes-detail'),
     path('boxes/edit/<uuid:id>/', boxes.edit, name='boxes-edit'),
     path('boxes/remove/<uuid:id>/', boxes.remove, name='boxes-remove'),
+    path('boxes/qr/<uuid:id>/', boxes.qr, name='boxes-qr'),
     path('boxes/add/', boxes.add, name='boxes-add'),
 
     path('specimens/', specimens.overview, name='specimens-overview'),

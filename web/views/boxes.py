@@ -1,7 +1,9 @@
+import qrcode
 from django.contrib.auth.decorators import login_required
 from django.forms import model_to_dict
-from django.http import JsonResponse, Http404
+from django.http import JsonResponse, Http404, HttpResponse
 from django.shortcuts import render, redirect
+from django.urls import reverse
 
 from core import status
 from core.models import Box
@@ -104,3 +106,17 @@ def remove(request, id):
     box.delete()
 
     return redirect('boxes-overview')
+
+
+@login_required
+def qr(request, id):
+    try:
+        box = Box.objects.get(pk=str(id))
+    except Box.DoesNotExist:
+        raise Http404()
+
+    img = qrcode.make(request.build_absolute_uri(reverse('boxes-detail', None, [box.id])))
+
+    response = HttpResponse(content_type="image/png")
+    img.save(response, "PNG")
+    return response
