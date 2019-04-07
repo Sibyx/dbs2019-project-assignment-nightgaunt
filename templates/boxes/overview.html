@@ -14,17 +14,16 @@
 	<div class="container">
 
 		<div class="row pt-3">
-			<div class="col-lg-10">
+			<div class="col-lg-8">
 				<h1>{% trans 'Boxes' %}</h1>
 			</div>
-			<div class="col-lg-2 text-right">
+			<div class="col-lg-4 text-right">
 				<a
 					class="btn btn-primary"
 					role="button"
 					href="{% url 'boxes-add' %}"
 					data-toggle="modal"
 					data-target="#ajaxModal"
-					data-ajax="{% url 'boxes-add' %}"
 				>
 					<i class="fas fa-plus"></i> {% trans 'Add box' %}
 				</a>

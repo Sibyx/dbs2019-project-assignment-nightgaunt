@@ -10,7 +10,13 @@
 </div>
 
 <div class="modal-body">
-	<form method="post" id="ajaxForm" data-modal="#ajaxModal" action="{% url 'boxes-add' %}" data-table="#dataTable">
+	<form
+		method="post"
+		id="ajaxForm"
+		data-modal="#ajaxModal"
+		action="{% if box %}{% url 'boxes-edit' box.id %}{% else %}{% url 'boxes-add' %}{% endif %}"
+		data-table="#dataTable"
+	>
 		{% csrf_token %}
 		{% include '_partials/bootstrap_form.html' with form=form %}
 	</form>
@@ -43,7 +49,7 @@
 				window.location = data.url;
 			},
 			error: function (xhr, status, error) {
-				if (status === 422) {
+				if (xhr.status === 422) {
 					$(modal).find(".modal-content").html(xhr.responseText);
 				} else {
 					// TODO: handle 500 like human
