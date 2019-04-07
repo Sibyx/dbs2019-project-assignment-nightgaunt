@@ -34,10 +34,8 @@ def pwd(ctx):
 def setup(ctx):
     ctx = get_connection(ctx)
 
-    # Move to project folder
-    ctx.run(f"cd {PROJECT_PATH}")
-
     # Clone repository
+    ctx.run(f"git clone {REPO_URL} {PROJECT_PATH}")
 
 
 @task
@@ -45,4 +43,9 @@ def deploy(ctx):
     ctx = get_connection(ctx)
 
     # Move to project folder
-    ctx.run(f"cd {PROJECT_PATH}")
+    with ctx.cd(f"{PROJECT_PATH}"):
+        # Download changes
+        ctx.run(f"git pull")
+
+        # Setup env
+        ctx.run("pipenv sync")
