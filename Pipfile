@@ -12,7 +12,6 @@ Pillow = "*"
 
 [dev-packages]
 fabric = "==2.*"
-fabric-digitalocean = "*"
 
 [requires]
 python_version = "3.7"
