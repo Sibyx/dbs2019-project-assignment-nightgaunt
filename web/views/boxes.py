@@ -1,5 +1,6 @@
 import qrcode
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 from django.forms import model_to_dict
 from django.http import JsonResponse, Http404, HttpResponse
 from django.shortcuts import render, redirect
@@ -13,13 +14,19 @@ from web.forms.box import BoxForm
 @login_required
 def overview(request):
     if request.is_ajax():
-        boxes = Box.objects.all()
+        search = request.GET.get('search', '')
+        offset = int(request.GET.get('offset', 0)) + 1
+        limit = int(request.GET.get('limit', 10))
+
+        boxes = Box.objects.filter(title__contains=search).order_by('title')
+        paginator = Paginator(boxes, limit)
+
         response = {
             'rows': [],
-            'total': len(boxes)
+            'total': paginator.count
         }
 
-        for box in boxes:
+        for box in paginator.get_page(offset):
             response['rows'].append(box.dict)
 
         return JsonResponse(response)

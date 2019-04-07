@@ -47,7 +47,7 @@
 					<thead>
 					<tr>
 						<th data-field="title">{% trans 'Title' %}</th>
-						<th data-field="description">{% trans 'Name' %}</th>
+						<th data-field="description">{% trans 'Description' %}</th>
 						<th data-field="size">{% trans 'Size' %}</th>
 					</tr>
 					</thead>
@@ -70,15 +70,14 @@
 			console.log(params);
 
 			$.ajax({
-				type: "POST",
+				type: "GET",
 				url: "{% url 'boxes-overview' %}",
 				dataType: "json",
+				data: params.data,
 				success: function (data) {
-					console.log(data);
-
 					params.success({
 						"rows": data.rows,
-						"total": data.items
+						"total": data.total
 					})
 				},
 				error: function (err) {
