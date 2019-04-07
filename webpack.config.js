@@ -7,6 +7,11 @@ module.exports = {
 		path: path.resolve(__dirname, 'static')
 	},
 	devtool: 'source-map',
+	resolve: {
+		alias: {
+			jquery: "jquery/src/jquery"
+		}
+	},
 	performance: {
 		// Turn off size warnings for entry points
 		hints: false,

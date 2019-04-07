@@ -4,7 +4,7 @@
 
 {% block title %}{{ _("Login") }}{% endblock %}
 
-{% block stylesheets %}
+{% block head %}
 	<style type="text/css">
 		html, body {
 			height: 100%;
@@ -33,63 +33,7 @@
 				<form method="post">
 					{% csrf_token %}
 
-					{% for hidden_field in form.hidden_fields %}
-						{{ hidden_field }}
-					{% endfor %}
-
-					{% if form.non_field_errors %}
-						<div class="alert alert-danger" role="alert">
-							{% for error in form.non_field_errors %}
-								{{ error }}
-							{% endfor %}
-						</div>
-					{% endif %}
-
-					{% for field in form.visible_fields %}
-						<div class="form-group">
-							{{ field.label_tag }}
-
-							{% if form.is_bound %}
-								{% if field.errors %}
-									<input
-										type="{{ field.field.widget.input_type }}"
-										class="form-control is-invalid"
-										name="{{ field.html_name }}"
-										placeholder="{{ field.label }}"
-										value="{{ field.value|default_if_none:"" }}"
-										id="{{ field.id_for_label }}"
-									>
-									{% for error in field.errors %}
-										<div class="invalid-feedback">
-											{{ error }}
-										</div>
-									{% endfor %}
-								{% else %}
-									<input
-										type="{{ field.field.widget.input_type }}"
-										class="form-control is-valid"
-										name="{{ field.html_name }}"
-										placeholder="{{ field.label }}"
-										value="{{ field.value|default_if_none:"" }}"
-										id="{{ field.id_for_label }}"
-									>
-								{% endif %}
-							{% else %}
-								<input
-									type="{{ field.field.widget.input_type }}"
-									class="form-control"
-									name="{{ field.html_name }}"
-									placeholder="{{ field.label }}"
-									value="{{ field.value|default_if_none:"" }}"
-									id="{{ field.id_for_label }}"
-								>
-							{% endif %}
-
-							{% if field.help_text %}
-								<small class="form-text text-muted">{{ field.help_text }}</small>
-							{% endif %}
-						</div>
-					{% endfor %}
+					{% include '_partials/bootstrap_form.html' with form=form %}
 
 					<button type="submit" class="btn btn-primary btn-block">
 						<i class="fas fa-sign-in-alt"></i> {% trans "Log in" %}

@@ -1,0 +1,63 @@
+{% load i18n %}
+
+<div class="modal-header">
+	<h5 class="modal-title" id="ajaxModalLabel">
+		{% trans 'New box' %}
+	</h5>
+	<button type="button" class="close" data-dismiss="modal" aria-label="{% trans 'Close' %}">
+		<span aria-hidden="true">&times;</span>
+	</button>
+</div>
+
+<div class="modal-body">
+	<form
+		method="post"
+		id="ajaxForm"
+		data-modal="#ajaxModal"
+		action="{% if box %}{% url 'boxes-edit' box.id %}{% else %}{% url 'boxes-add' %}{% endif %}"
+		data-table="#dataTable"
+	>
+		{% csrf_token %}
+		{% include '_partials/bootstrap_form.html' with form=form %}
+	</form>
+</div>
+
+<div class="modal-footer">
+	<button type="button" class="btn btn-secondary" data-dismiss="modal">{% trans "Close" %}</button>
+	<button type="submit" form="ajaxForm" class="btn btn-primary">
+		<i class="fas fa-save"></i> {% trans 'Save' %}
+	</button>
+</div>
+
+<script>
+	$("#ajaxForm").on('submit', function (e) {
+		e.preventDefault();
+
+		const form = $(this);
+		const modal = $(this).data('modal');
+		const table = $(this).data('table');
+
+		$.ajax({
+			type: form.attr('method'),
+			url: form.attr('action'),
+			data: form.serialize(),
+			success: function (data) {
+				$(modal).modal('hide');
+				if (typeof table !== typeof undefined && table !== false) {
+					$(table).bootstrapTable('refresh');
+				}
+				window.location = data.url;
+			},
+			error: function (xhr, status, error) {
+				if (xhr.status === 422) {
+					$(modal).find(".modal-content").html(xhr.responseText);
+				} else {
+					// TODO: handle 500 like human
+					// https://getbootstrap.com/docs/4.2/components/toasts/
+					alert("{% trans 'Internal server error' %}")
+				}
+			}
+		})
+
+	});
+</script>

@@ -1,0 +1,74 @@
+{% extends '_layouts/base.html' %}
+
+{% load i18n %}
+
+{% block title %}{% trans 'Boxes' %}{% endblock %}
+
+{% block content %}
+	<div class="container">
+
+		<div class="row pt-3">
+			<div class="col-lg-8">
+				<h1>{{ box.title }}</h1>
+			</div>
+			<div class="col-lg-4 text-right">
+				<a
+					class="btn btn-danger"
+					role="button"
+					href="{% url 'boxes-remove' box.id %}"
+				>
+					<i class="fas fa-trash"></i> {% trans 'Remove box' %}
+				</a>
+
+				<a
+					class="btn btn-primary"
+					role="button"
+					href="{% url 'boxes-edit' box.id %}"
+					data-toggle="modal"
+					data-target="#ajaxModal"
+				>
+					<i class="fas fa-edit"></i> {% trans 'Edit box' %}
+				</a>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-lg-4">
+				<div class="card">
+					<img class="card-img-top" src="{% url 'boxes-qr' box.id %}" alt="Card image cap">
+					<div class="card-body">
+						<h5 class="card-title">{{ box.title }}</h5>
+						<p class="card-text">{{ box.description }}</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-8">
+				<table
+					class="table"
+					id="dataTable"
+					data-toggle="table"
+					data-search="true"
+					{#					data-ajax="loadTable"#}
+					{#					data-side-pagination="server"#}
+					{#					data-pagination="true"#}
+					data-id-field="id"
+					data-unique-id="id"
+				>
+					<thead>
+					<tr>
+						<th data-field="title">{% trans 'Title' %}</th>
+						<th data-field="description">{% trans 'Name' %}</th>
+						<th data-field="size">{% trans 'Size' %}</th>
+					</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	{% include '_partials/modal.html' %}
+{% endblock %}
+
+{% block javascript %}
+{% endblock %}
