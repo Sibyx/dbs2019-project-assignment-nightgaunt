@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 from core.models.base import BaseModel
 from core.models.user import User
@@ -16,3 +17,13 @@ class Box(BaseModel):
 
     def __str__(self):
         return self.title
+
+    @property
+    def dict(self):
+        return {
+            "id": self.id,
+            "title": self.title,
+            "description": self.description,
+            "size": self.specimen_set.count(),
+            "url": reverse('boxes-detail', None, [self.id])
+        }

@@ -1,0 +1,40 @@
+{% load i18n %}
+
+<div class="modal fade" id="ajaxModal" role="dialog" aria-labelledby="ajaxModalLabel" aria-hidden="true">
+	<div class="modal-dialog {% if modal_size %}{{ modal_size }}{% endif %}" role="document">
+		<div class="modal-content">
+		</div>
+	</div>
+</div>
+
+<div id="modalSpinner" class="d-none">
+	<div class="modal-header">
+		<h5 class="modal-title" id="ajaxModalLabel">{% trans 'Loading' %}</h5>
+		<button type="button" class="close" data-dismiss="modal" aria-label="{% trans 'Close' %}">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div class="modal-body text-center">
+		<div class="spinner-border" role="status">
+			<span class="sr-only">{% trans "Loading" %}</span>
+		</div>
+	</div>
+</div>
+
+<script>
+	$("#ajaxModal")
+		.on("show.bs.modal", function (e) {
+			const modal = $(this);
+			$.ajax({
+				url: e.relatedTarget.href,
+				method: 'GET',
+				success: function (data) {
+					$(modal).find(".modal-content").html(data);
+				},
+				beforeSend: function () {
+					$(modal).find(".modal-content").html($("#modalSpinner").html());
+				}
+			})
+		})
+	;
+</script>

@@ -13,9 +13,21 @@
 {% block content %}
 	<div class="container">
 
-		<div class="row">
-			<div class="col-lg-12">
+		<div class="row pt-3">
+			<div class="col-lg-10">
 				<h1>{% trans 'Boxes' %}</h1>
+			</div>
+			<div class="col-lg-2 text-right">
+				<a
+					class="btn btn-primary"
+					role="button"
+					href="{% url 'boxes-add' %}"
+					data-toggle="modal"
+					data-target="#ajaxModal"
+					data-ajax="{% url 'boxes-add' %}"
+				>
+					<i class="fas fa-plus"></i> {% trans 'Add box' %}
+				</a>
 			</div>
 		</div>
 
@@ -45,6 +57,8 @@
 			</div>
 		</div>
 	</div>
+
+	{% include '_partials/modal.html' %}
 {% endblock %}
 
 {% block javascript %}
