@@ -10,6 +10,7 @@ psycopg2-binary = "==2.*"
 django-role-permissions = "==2.*"
 Pillow = "*"
 qrcode = "*"
+gunicorn = "*"
 
 [dev-packages]
 fabric = "==2.*"
