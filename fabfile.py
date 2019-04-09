@@ -7,6 +7,7 @@ warnings.filterwarnings(action='ignore', module='.*paramiko.*')
 PROJECT_NAME = "mdns"
 PROJECT_PATH = "~/www"
 REPO_URL = "git@github.com:fiit-dbs-2019/dbs2019-project-assignment-nightgaunt.git"
+BRANCH = 'develop'
 
 
 def get_connection(ctx):
@@ -45,6 +46,7 @@ def deploy(ctx):
     # Move to project folder
     with ctx.cd(f"{PROJECT_PATH}"):
         # Download changes
+        ctx.run(f"git checkout {BRANCH}")
         ctx.run(f"git pull")
 
         # Setup env
