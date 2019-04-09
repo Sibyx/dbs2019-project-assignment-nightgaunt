@@ -51,3 +51,6 @@ def deploy(ctx):
 
         # Setup env
         ctx.run("pipenv sync")
+
+        # Run migrations
+        ctx.run("pipenv run python manage.py migrate")
