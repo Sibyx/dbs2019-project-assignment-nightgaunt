@@ -17,6 +17,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
+import os
 
 from web.urls import urlpatterns as web_urls
 
@@ -26,4 +27,6 @@ urlpatterns = [
 ]
 
 urlpatterns += web_urls
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+if os.getenv('DJANGO_SETTINGS_MODULE') == 'settings.development':
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

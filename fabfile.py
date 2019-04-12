@@ -54,3 +54,7 @@ def deploy(ctx):
 
         # Run migrations
         ctx.run("pipenv run python manage.py migrate")
+
+        # Static files
+        ctx.put("static/bundle.js", f"www/static")
+        ctx.put("static/bundle.js.map", f"www/static")
