@@ -26,12 +26,6 @@ def production(ctx):
 
 
 @task
-def pwd(ctx):
-    ctx = get_connection(ctx)
-    ctx.run("pwd")
-
-
-@task
 def setup(ctx):
     ctx = get_connection(ctx)
 
@@ -58,3 +52,15 @@ def deploy(ctx):
         # Static files
         ctx.put("static/bundle.js", f"www/static")
         ctx.put("static/bundle.js.map", f"www/static")
+
+        # Restart Gunicorn service
+        ctx.run("sudo systemctl restart mdns-web")
+
+
+@task
+def user(ctx):
+    ctx = get_connection(ctx)
+
+    # Move to project folder
+    with ctx.cd(f"{PROJECT_PATH}"):
+        ctx.run("pipenv run python manage.py createsuperuser", pty=True)

@@ -29,4 +29,4 @@ urlpatterns = [
 urlpatterns += web_urls
 
 if os.getenv('DJANGO_SETTINGS_MODULE') == 'settings.development':
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.STATIC_URL)
