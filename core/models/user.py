@@ -1,6 +1,7 @@
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
 from django.db import models
+from libgravatar import Gravatar
 
 from core.managers.user import UserManager
 from core.models.base import BaseModel
@@ -27,6 +28,10 @@ class User(BaseModel, AbstractBaseUser, PermissionsMixin):
 
     def get_short_name(self) -> str:
         return self.name
+
+    def avatar(self, size: int = 20) -> str:
+        gravatar = Gravatar(self.email)
+        return gravatar.get_image(size)
 
     @property
     def is_staff(self):

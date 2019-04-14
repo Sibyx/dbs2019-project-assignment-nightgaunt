@@ -34,7 +34,6 @@ def overview(request):
     return render(request, 'boxes/overview.html')
 
 
-@login_required
 def detail(request, id):
     try:
         box = Box.objects.get(pk=str(id))
@@ -115,7 +114,6 @@ def remove(request, id):
     return redirect('boxes-overview')
 
 
-@login_required
 def qr(request, id):
     try:
         box = Box.objects.get(pk=str(id))

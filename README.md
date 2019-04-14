@@ -7,7 +7,7 @@ je umožnená iba autorizovaným používateľom, možnosť prezerania a vyhľad
 Súčasťou je jednoduchý import/export mechanizmus.
 
 Back-end je implementovaný ako [Django](https://www.djangoproject.com/) aplikácia pre Python 3.6 a na front-end 
-je pre zjednodušenie použitá knižnica [SemanticUI](https://semantic-ui.com/). Ako databázový systém je použitý 
+je pre zjednodušenie použitá knižnica [Bootstrap](https://getbootstrap.com/). Ako databázový systém je použitý 
 [PostgreSQL](https://www.postgresql.org/) server verzie 10.
 
 Všeky issues (feature, bug, docs a enchasment) sú spravované cez príslušné GitHub nástroje:
@@ -35,7 +35,7 @@ Minimálne požiadavky:
 - Python 3.6
 - Pipenv
 - PostgreSQL
-- NodeJS & yarn & Gulp.js (pre úspešný build front-end časti)
+- NodeJS & yarn (pre úspešný build front-end časti)
 
 Na správu závislostí používame [pipenv](https://github.com/pypa/pipenv), ktorý inštaláciu značne zjednodušuje:
 
