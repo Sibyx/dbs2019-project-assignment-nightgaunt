@@ -19,7 +19,7 @@ class Box(BaseModel):
         return self.title
 
     @property
-    def dict(self):
+    def summary(self) -> dict:
         return {
             "id": self.id,
             "title": self.title,

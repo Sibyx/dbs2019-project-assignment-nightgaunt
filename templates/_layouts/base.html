@@ -41,7 +41,8 @@
 				</li>
 
 				{# Specimens #}
-				<li class="nav-item {% if request.resolver_match.url_name|in_list:'specimens-overview' %}active{% endif %}">
+				<li
+					class="nav-item {% if request.resolver_match.url_name|in_list:'specimens-overview;specimens-add;specimens-detail' %}active{% endif %}">
 					<a class="nav-link" href="{% url 'specimens-overview' %}">
 						<i class="fas fa-spider"></i>
 						{% trans "Specimens" %}

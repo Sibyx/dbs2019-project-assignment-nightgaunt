@@ -56,6 +56,7 @@ pipenv install
 - [django-role-permissions](https://github.com/vintasoftware/django-role-permissions): RBAC
 - [python-qrcode](https://github.com/lincolnloop/python-qrcode): QR code generator
 - [bootstrap-table](https://bootstrap-table.com/): Bootstrap native datatables
+- [libgravatar](https://github.com/pabluk/libgravatar): Gravatar client
 
 ---
 S ❤️ Jakub Dubec (c) 2019

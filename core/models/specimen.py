@@ -1,6 +1,7 @@
 from enum import Enum
 
 from django.db import models
+from django.utils import formats
 from django.utils.translation import gettext as _
 
 from core.models.base import BaseModel
@@ -23,11 +24,25 @@ class Specimen(BaseModel):
     creator = models.ForeignKey(User, on_delete=models.CASCADE)
     box = models.ForeignKey(Box, on_delete=models.CASCADE)
     organism = models.ForeignKey(Organism, on_delete=models.CASCADE)
-    nickname = models.CharField(max_length=100)
     gender = models.CharField(max_length=10, choices=[(tag, tag.value) for tag in GenderChoice], null=True)
     form = models.CharField(max_length=50)
+    happened_at = models.DateField(null=True)
     notes = models.TextField(null=True)
     dna = models.TextField(null=True)
 
     def __str__(self):
-        return self.nickname if self.nickname else str(self.organism)
+        return self.organism.name
+
+    @property
+    def summary(self) -> dict:
+        return {
+            'id': self.id,
+            'creator': str(self.creator),
+            'organism__name': self.organism.name,
+            'box__title': self.box.title,
+            'gender': self.gender,
+            'form': self.form,
+            'happened_at': formats.date_format(self.happened_at),
+            'notes': self.notes,
+            'dna': self.dna
+        }

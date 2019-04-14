@@ -43,8 +43,8 @@
 				>
 					<thead>
 					<tr>
-						<th data-field="title">{% trans 'Title' %}</th>
-						<th data-field="description">{% trans 'Description' %}</th>
+						<th data-field="title" data-sortable="true">{% trans 'Title' %}</th>
+						<th data-field="description" data-sortable="true">{% trans 'Description' %}</th>
 						<th data-field="size">{% trans 'Size' %}</th>
 					</tr>
 					</thead>
@@ -52,6 +52,7 @@
 				</table>
 			</div>
 		</div>
+
 	</div>
 
 	{% include '_partials/modal.html' %}
@@ -59,10 +60,6 @@
 
 {% block javascript %}
 	<script>
-		$.ajaxSetup({
-			headers: {"X-CSRFToken": '{{csrf_token}}'}
-		});
-
 		function loadTable(params) {
 			console.log(params);
 
@@ -85,7 +82,8 @@
 
 		function rowAttributes(row, index) {
 			return {
-				'data-url': row.url
+				'data-url': row.url,
+				'id': row.id
 			}
 		}
 
