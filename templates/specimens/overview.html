@@ -3,3 +3,90 @@
 {% load i18n %}
 
 {% block title %}{% trans 'Specimens' %}{% endblock %}
+
+{% block content %}
+	<div class="container">
+
+		<div class="row pt-3">
+			<div class="col-lg-8">
+				<h1>
+					<i class="fas fa-spider"></i>
+					{% trans 'Specimens' %}
+				</h1>
+			</div>
+			<div class="col-lg-4 text-right">
+				<a
+					class="btn btn-primary"
+					role="button"
+					href="{% url 'specimens-add' %}"
+				>
+					<i class="fas fa-plus"></i> {% trans 'Add specimen' %}
+				</a>
+			</div>
+		</div>
+
+
+		<div class="row">
+			<div class="col-lg-12">
+				<table
+					class="table"
+					id="dataTable"
+					data-toggle="table"
+					data-search="true"
+					data-ajax="loadTable"
+					data-row-attributes="rowAttributes"
+					data-side-pagination="server"
+					data-pagination="true"
+					data-id-field="id"
+					data-unique-id="id"
+				>
+					<thead>
+					<tr>
+						<th data-field="organism__name" data-sortable="true">{% trans 'Organism' %}</th>
+						<th data-field="box__title" data-sortable="true">{% trans 'Box' %}</th>
+						<th data-field="gender" data-sortable="true">{% trans 'Gender' %}</th>
+						<th data-field="form" data-sortable="true">{% trans 'Form' %}</th>
+						<th data-field="happened_at" data-sortable="true">{% trans 'Happened at' %}</th>
+					</tr>
+					</thead>
+					<tbody></tbody>
+				</table>
+			</div>
+		</div>
+
+
+	</div>
+{% endblock %}
+
+{% block javascript %}
+	<script>
+		function loadTable(params) {
+			$.ajax({
+				type: "GET",
+				url: "{% url 'specimens-overview' %}",
+				dataType: "json",
+				data: params.data,
+				success: function (data) {
+					params.success({
+						"rows": data.rows,
+						"total": data.total
+					})
+				},
+				error: function (err) {
+					params.error(err);
+				}
+			})
+		}
+
+		function rowAttributes(row, index) {
+			return {
+				'data-url': row.url,
+				'id': row.id
+			}
+		}
+
+		$("#dataTable tbody").on('click', 'tr[data-url]', function (e) {
+			window.location = $(this).data('url');
+		});
+	</script>
+{% endblock %}

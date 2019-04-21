@@ -18,16 +18,18 @@ def overview(request):
         offset = int(request.GET.get('offset', 0)) + 1
         limit = int(request.GET.get('limit', 10))
 
-        boxes = Box.objects.filter(title__contains=search).order_by('title')
+        # Sorting
+        sort = request.GET.get('sort', 'title')
+        if request.GET.get('order', 'asc') == 'desc':
+            sort = f"-{sort}"
+
+        boxes = Box.objects.filter(title__icontains=search).order_by(sort)
         paginator = Paginator(boxes, limit)
 
         response = {
-            'rows': [],
+            'rows': [row.summary for row in paginator.get_page(offset)],
             'total': paginator.count
         }
-
-        for box in paginator.get_page(offset):
-            response['rows'].append(box.dict)
 
         return JsonResponse(response)
 
@@ -66,7 +68,7 @@ def edit(request, id):
 
         if box_form.is_valid():
             box_form.save()
-            return JsonResponse(box.dict, status=status.HTTP_200_OK)
+            return JsonResponse(box.summary, status=status.HTTP_200_OK)
 
         return render(request, 'boxes/form.html', {
             'form': box_form,
@@ -93,7 +95,7 @@ def add(request):
 
         if box_form.is_valid():
             box_form.save()
-            return JsonResponse(box.dict, status=status.HTTP_201_CREATED)
+            return JsonResponse(box.summary, status=status.HTTP_201_CREATED)
 
         return render(request, 'boxes/form.html', {
             'form': box_form

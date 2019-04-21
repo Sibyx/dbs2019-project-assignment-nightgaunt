@@ -15,6 +15,7 @@ urlpatterns = [
 
     # Specimens
     path('specimens/', specimens.overview, name='specimens-overview'),
+    path('specimens/add/', specimens.add, name='specimens-add'),
 
     # Catalogue
     path('catalogue/', catalogue.overview, name='catalogue-overview'),
