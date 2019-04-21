@@ -4,7 +4,7 @@ import random
 import shutil
 import uuid
 
-from dateutil.tz import tz
+import pytz
 from django.conf import settings
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.core.management import BaseCommand
@@ -79,7 +79,7 @@ class Command(BaseCommand):
             box=box,
             gender=self.faker.specimen_gender(),
             form=self.faker.specimen_form(),
-            happened_at=self.faker.date_time_between(start_date="-40y", end_date="now", tzinfo=tz.gettz('UTC')),
+            happened_at=self.faker.date_time_between(start_date="-40y", end_date="now", tzinfo=pytz.UTC),
             notes=self.faker.paragraph(),
             dna=self.faker.sentence()
         )
@@ -102,7 +102,7 @@ class Command(BaseCommand):
             creator=self.creator,
             title=self.faker.sentence(),
             mime='image/png',
-            happened_at=self.faker.date_time_between(start_date="-40y", end_date="now", tzinfo=tz.gettz('UTC')),
+            happened_at=self.faker.date_time_between(start_date="-40y", end_date="now", tzinfo=pytz.UTC),
             description=self.faker.paragraph()
         )
 
