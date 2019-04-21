@@ -13,6 +13,7 @@ qrcode = "*"
 gunicorn = "*"
 libgravatar = "*"
 faker = "==1.*"
+robohash = "*"
 
 [dev-packages]
 fabric = "==2.*"
