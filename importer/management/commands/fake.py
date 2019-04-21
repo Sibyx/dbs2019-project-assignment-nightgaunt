@@ -1,6 +1,7 @@
 import io
 
 import random
+import shutil
 import uuid
 
 from dateutil.tz import tz
@@ -41,7 +42,8 @@ class Command(BaseCommand):
         if options['clear']:
             self.stdout.write(self.style.WARNING("Clearing database"))
             Box.objects.hard_delete()
-            # TODO: delete also photo files
+            self.stdout.write(self.style.WARNING("Removing related files"))
+            shutil.rmtree(f"{settings.MEDIA_ROOT}/photos")
 
         self.stdout.write("Generating objects")
         for index in range(settings.DEMONSTRATION['BOXES']):
