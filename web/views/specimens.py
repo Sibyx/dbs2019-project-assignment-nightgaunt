@@ -1,6 +1,5 @@
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
-from django.db.models import Q
 from django.http import JsonResponse
 from django.shortcuts import render
 
@@ -15,12 +14,12 @@ def overview(request):
         limit = int(request.GET.get('limit', 10))
 
         # Sorting
-        sort = request.GET.get('sort', 'title')
+        sort = request.GET.get('sort', 'organism__name')
         if request.GET.get('order', 'asc') == 'desc':
             sort = f"-{sort}"
 
         specimens = Specimen.objects \
-            .filter(Q(nickname__icontains=search) | Q(organism__name__icontains=search)) \
+            .filter(organism__name__icontains=search) \
             .order_by(sort)
         paginator = Paginator(specimens, limit)
 

@@ -11,10 +11,13 @@ class Photo(BaseModel):
         default_permissions = ()
         db_table = 'photos'
 
+    def _upload_to_path(self, filename):
+        return f"photos/{self.specimen.box.id}/{filename}"
+
     specimen = models.ForeignKey(Specimen, on_delete=models.CASCADE)
     creator = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=100, null=True)
     mime = models.CharField(max_length=100)
-    path = models.ImageField(upload_to='photos')
+    path = models.ImageField(upload_to=_upload_to_path)
     happened_at = models.DateTimeField(null=True)
     description = models.TextField(null=True)

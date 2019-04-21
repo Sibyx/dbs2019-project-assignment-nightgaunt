@@ -91,11 +91,7 @@ DEMONSTRATION = {
         'MIN': 5,
         'MAX': 20
     },
-    'PHOTOS': 5,
-    'RENTS': {
-        'BOXES': 10,
-        'SPECIMENS': 50
-    }
+    'PHOTOS': 5
 }
 
 # Password validation
@@ -143,3 +139,6 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")

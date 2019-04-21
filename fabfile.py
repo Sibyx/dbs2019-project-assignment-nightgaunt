@@ -64,3 +64,13 @@ def user(ctx):
     # Move to project folder
     with ctx.cd(f"{PROJECT_PATH}"):
         ctx.run("pipenv run python manage.py createsuperuser", pty=True)
+
+
+@task
+def fake(ctx):
+    ctx = get_connection(ctx)
+
+    # Move to project folder
+    with ctx.cd(f"{PROJECT_PATH}"):
+        # Execute fake command
+        ctx.run("pipenv run python manage.py fake --clear")
