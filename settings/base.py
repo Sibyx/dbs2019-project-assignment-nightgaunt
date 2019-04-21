@@ -85,6 +85,18 @@ DATABASES = {
     },
 }
 
+DEMONSTRATION = {
+    'BOXES': 1000,
+    'SPECIMENS': {
+        'MIN': 5,
+        'MAX': 20
+    },
+    'PHOTOS': 5,
+    'RENTS': {
+        'BOXES': 10,
+        'SPECIMENS': 50
+    }
+}
 
 # Password validation
 

@@ -1,3 +1,5 @@
+import random
+
 from django.db import models
 
 from core.querysets.base import BaseQuerySet
@@ -15,3 +17,6 @@ class BaseManager(models.Manager):
 
     def hard_delete(self):
         return self.get_queryset().hard_delete()
+
+    def random(self):
+        return random.choice(self.all())

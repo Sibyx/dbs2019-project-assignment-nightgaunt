@@ -12,6 +12,7 @@ Pillow = "*"
 qrcode = "*"
 gunicorn = "*"
 libgravatar = "*"
+faker = "==1.*"
 
 [dev-packages]
 fabric = "==2.*"
