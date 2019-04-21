@@ -43,7 +43,7 @@ class Command(BaseCommand):
             self.stdout.write(self.style.WARNING("Clearing database"))
             Box.objects.hard_delete()
             self.stdout.write(self.style.WARNING("Removing related files"))
-            shutil.rmtree(f"{settings.MEDIA_ROOT}/photos")
+            shutil.rmtree(f"{settings.MEDIA_ROOT}/photos", True)
 
         self.stdout.write("Generating objects")
         for index in range(settings.DEMONSTRATION['BOXES']):
