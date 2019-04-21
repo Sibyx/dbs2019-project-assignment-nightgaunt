@@ -19,7 +19,17 @@ class Command(BaseCommand):
 
         self.creator = User.objects.first()
 
+    def add_arguments(self, parser):
+        parser.add_argument(
+            '--clear',
+            action='store_true',
+            help='Clear collection before faking new data'
+        )
+
     def handle(self, *args, **options):
+        if options['clear']:
+            Box.objects.hard_delete()
+
         for _ in range(settings.DEMONSTRATION['BOXES']):
             self._generate_box()
 
