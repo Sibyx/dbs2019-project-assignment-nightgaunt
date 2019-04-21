@@ -12,11 +12,11 @@ Pillow = "*"
 qrcode = "*"
 gunicorn = "*"
 libgravatar = "*"
-faker = "==1.*"
-robohash = "*"
 
 [dev-packages]
 fabric = "==2.*"
+faker = "==1.*"
+robohash = "*"
 
 [requires]
 python_version = "3.7"
