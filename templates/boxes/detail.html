@@ -48,17 +48,19 @@
 					id="dataTable"
 					data-toggle="table"
 					data-search="true"
-					{#					data-ajax="loadTable"#}
-					{#					data-side-pagination="server"#}
-					{#					data-pagination="true"#}
+					data-ajax="loadTable"
+					data-row-attributes="rowAttributes"
+					data-side-pagination="server"
+					data-pagination="true"
 					data-id-field="id"
 					data-unique-id="id"
 				>
 					<thead>
 					<tr>
-						<th data-field="title">{% trans 'Title' %}</th>
-						<th data-field="description">{% trans 'Name' %}</th>
-						<th data-field="size">{% trans 'Size' %}</th>
+						<th data-field="organism__name" data-sortable="true">{% trans 'Organism' %}</th>
+						<th data-field="gender" data-sortable="true">{% trans 'Gender' %}</th>
+						<th data-field="form" data-sortable="true">{% trans 'Form' %}</th>
+						<th data-field="happened_at" data-sortable="true">{% trans 'Happened at' %}</th>
 					</tr>
 					</thead>
 					<tbody></tbody>
@@ -71,4 +73,34 @@
 {% endblock %}
 
 {% block javascript %}
+	<script>
+		function loadTable(params) {
+			$.ajax({
+				type: "GET",
+				url: "{% url 'boxes-detail' box.id %}",
+				dataType: "json",
+				data: params.data,
+				success: function (data) {
+					params.success({
+						"rows": data.rows,
+						"total": data.total
+					})
+				},
+				error: function (err) {
+					params.error(err);
+				}
+			})
+		}
+
+		function rowAttributes(row, index) {
+			return {
+				'data-url': row.url,
+				'id': row.id
+			}
+		}
+
+		$("#dataTable tbody").on('click', 'tr[data-url]', function (e) {
+			window.location = $(this).data('url');
+		});
+	</script>
 {% endblock %}
