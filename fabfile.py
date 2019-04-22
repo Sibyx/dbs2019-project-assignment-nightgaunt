@@ -86,3 +86,11 @@ def organisms(ctx):
 
         # Execute fake command
         ctx.run("pipenv run python manage.py import_organisms --file tmp/data.csv")
+
+
+@task
+def restart(ctx):
+    ctx = get_connection(ctx)
+
+    # Restart Gunicorn service
+    ctx.run("sudo systemctl restart mdns-web", pty=True)
