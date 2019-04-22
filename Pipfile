@@ -12,6 +12,7 @@ Pillow = "*"
 qrcode = "*"
 gunicorn = "*"
 libgravatar = "*"
+newrelic = "*"
 
 [dev-packages]
 fabric = "==2.*"
