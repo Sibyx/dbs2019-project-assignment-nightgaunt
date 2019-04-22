@@ -44,7 +44,7 @@ def deploy(ctx):
         ctx.run(f"git pull")
 
         # Setup env
-        ctx.run("pipenv sync --dev")
+        ctx.run("pipenv sync --dev", pty=True)
 
         # Run migrations
         ctx.run("pipenv run python manage.py migrate")
@@ -74,3 +74,15 @@ def fake(ctx):
     with ctx.cd(f"{PROJECT_PATH}"):
         # Execute fake command
         ctx.run("pipenv run python manage.py fake --clear")
+
+
+@task
+def organisms(ctx):
+    ctx = get_connection(ctx)
+
+    # Move to project folder
+    with ctx.cd(f"{PROJECT_PATH}"):
+        ctx.put("tmp/data.csv", f"www/tmp")
+
+        # Execute fake command
+        ctx.run("pipenv run python manage.py import_organisms --file tmp/data.csv")

@@ -5,10 +5,10 @@ DEBUG = True
 TIME_ZONE = 'Europe/Bratislava'
 
 DEMONSTRATION = {
-    'BOXES': 50,
+    'BOXES': 150,
     'SPECIMENS': {
         'MIN': 5,
-        'MAX': 20
+        'MAX': 15
     },
     'PHOTOS': 3
 }

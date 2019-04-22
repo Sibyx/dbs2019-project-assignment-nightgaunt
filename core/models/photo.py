@@ -1,7 +1,4 @@
-import pathlib
-
 from django.db import models
-from django.conf import settings
 
 from core.models.base import BaseModel
 from core.models.specimen import Specimen
@@ -15,7 +12,6 @@ class Photo(BaseModel):
         db_table = 'photos'
 
     def _upload_to_path(self, filename):
-        # pathlib.Path(f"{settings.MEDIA_ROOT}/photos/{self.specimen.box.id}").mkdir(parents=True, exist_ok=True)
         return f"photos/{self.specimen.box.id}/{filename}"
 
     specimen = models.ForeignKey(Specimen, on_delete=models.CASCADE)
