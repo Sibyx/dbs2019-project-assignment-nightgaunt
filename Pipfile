@@ -13,6 +13,7 @@ qrcode = "*"
 gunicorn = "*"
 libgravatar = "*"
 newrelic = "*"
+sentry-sdk = "*"
 
 [dev-packages]
 fabric = "==2.*"
