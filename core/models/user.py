@@ -31,7 +31,7 @@ class User(BaseModel, AbstractBaseUser, PermissionsMixin):
 
     def avatar(self, size: int = 20) -> str:
         gravatar = Gravatar(self.email)
-        return gravatar.get_image(size)
+        return gravatar.get_image(size, use_ssl=True)
 
     @property
     def is_staff(self):

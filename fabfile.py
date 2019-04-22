@@ -73,7 +73,7 @@ def fake(ctx):
     # Move to project folder
     with ctx.cd(f"{PROJECT_PATH}"):
         # Execute fake command
-        ctx.run("pipenv run python manage.py fake --clear")
+        ctx.run("pipenv run python manage.py fake --clear", pty=True)
 
 
 @task
