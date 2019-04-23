@@ -7,7 +7,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 
 from core import status
-from core.models import Box
+from core.models import Box, Specimen
 from web.forms.box import BoxForm
 
 
@@ -41,6 +41,28 @@ def detail(request, id):
         box = Box.objects.get(pk=str(id))
     except Box.DoesNotExist:
         raise Http404()
+
+    if request.is_ajax():
+        search = request.GET.get('search', '')
+        offset = int(request.GET.get('offset', 0)) + 1
+        limit = int(request.GET.get('limit', 10))
+
+        # Sorting
+        sort = request.GET.get('sort', 'organism__name')
+        if request.GET.get('order', 'asc') == 'desc':
+            sort = f"-{sort}"
+
+        specimens = Specimen.objects \
+            .filter(organism__name__icontains=search, box=box) \
+            .order_by(sort)
+        paginator = Paginator(specimens, limit)
+
+        response = {
+            'rows': [row.summary for row in paginator.get_page(offset)],
+            'total': paginator.count
+        }
+
+        return JsonResponse(response)
 
     context = {
         'box': box
