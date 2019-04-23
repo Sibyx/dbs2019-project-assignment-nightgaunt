@@ -1,6 +1,7 @@
 from enum import Enum
 
 from django.db import models
+from django.urls import reverse
 from django.utils import formats
 from django.utils.translation import gettext as _
 
@@ -44,5 +45,6 @@ class Specimen(BaseModel):
             'form': self.form,
             'happened_at': formats.date_format(self.happened_at),
             'notes': self.notes,
-            'dna': self.dna
+            'dna': self.dna,
+            "url": reverse('specimens-detail', None, [self.id])
         }

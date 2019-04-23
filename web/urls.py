@@ -15,6 +15,10 @@ urlpatterns = [
 
     # Specimens
     path('specimens/', specimens.overview, name='specimens-overview'),
+    path('specimens/detail/<uuid:id>/', specimens.detail, name='specimens-detail'),
+    path('specimens/edit/<uuid:id>/', specimens.edit, name='specimens-edit'),
+    path('specimens/remove/<uuid:id>/', specimens.remove, name='specimens-remove'),
+    path('specimens/qr/<uuid:id>/', specimens.qr, name='specimens-qr'),
     path('specimens/add/', specimens.add, name='specimens-add'),
 
     # Catalogue

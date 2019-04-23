@@ -1,7 +1,9 @@
+import qrcode
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
-from django.http import JsonResponse
-from django.shortcuts import render
+from django.http import JsonResponse, Http404, HttpResponse
+from django.shortcuts import render, redirect
+from django.urls import reverse
 
 from core.models import Specimen
 
@@ -36,3 +38,49 @@ def overview(request):
 @login_required
 def add(request):
     return render(request, 'specimens/form.html')
+
+
+def detail(request, id):
+    try:
+        specimen = Specimen.objects.get(pk=str(id))
+    except Specimen.DoesNotExist:
+        raise Http404()
+
+    context = {
+        'specimen': specimen
+    }
+
+    return render(request, 'specimens/detail.html', context)
+
+
+def edit(request, id):
+    try:
+        specimen = Specimen.objects.get(pk=str(id))
+    except Specimen.DoesNotExist:
+        raise Http404()
+
+    return render(request, 'specimens/form.html')
+
+
+def remove(request, id):
+    try:
+        specimen = Specimen.objects.get(pk=str(id))
+    except Specimen.DoesNotExist:
+        raise Http404()
+
+    specimen.delete()
+
+    return redirect('specimens-overview')
+
+
+def qr(request, id):
+    try:
+        specimen = Specimen.objects.get(pk=str(id))
+    except Specimen.DoesNotExist:
+        raise Http404()
+
+    img = qrcode.make(request.build_absolute_uri(reverse('specimens-detail', None, [specimen.id])))
+
+    response = HttpResponse(content_type="image/png")
+    img.save(response, "PNG")
+    return response
