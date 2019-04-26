@@ -1,6 +1,6 @@
 from django.urls import path
 
-from web.views import dashboard, boxes, specimens, catalogue, rents
+from web.views import dashboard, boxes, specimens, catalogue, rents, photos
 
 urlpatterns = [
     path('', dashboard.index, name='dashboard'),
@@ -26,4 +26,7 @@ urlpatterns = [
 
     # Rents
     path('rents/', rents.overview, name='rents-overview'),
+
+    # Photos
+    path('photos/detail/<uuid:id>/', photos.detail, name='photos-detail'),
 ]
