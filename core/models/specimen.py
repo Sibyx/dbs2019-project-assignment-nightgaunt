@@ -3,7 +3,6 @@ from enum import Enum
 from django.db import models
 from django.urls import reverse
 from django.utils import formats
-from django.utils.translation import gettext as _
 
 from core.models.base import BaseModel
 from core.models.boxes import Box
@@ -12,8 +11,8 @@ from core.models.user import User
 
 
 class GenderChoice(Enum):
-    MALE = _("Male")
-    FEMALE = _("Female")
+    MALE = "male"
+    FEMALE = "female"
 
 
 class Specimen(BaseModel):
@@ -25,7 +24,7 @@ class Specimen(BaseModel):
     creator = models.ForeignKey(User, on_delete=models.CASCADE)
     box = models.ForeignKey(Box, on_delete=models.CASCADE)
     organism = models.ForeignKey(Organism, on_delete=models.CASCADE)
-    gender = models.CharField(max_length=10, choices=[(tag, tag.value) for tag in GenderChoice], null=True)
+    gender = models.CharField(max_length=10, choices=[(tag.value, tag.value) for tag in GenderChoice], null=True)
     form = models.CharField(max_length=50)
     happened_at = models.DateField(null=True)
     notes = models.TextField(null=True)

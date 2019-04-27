@@ -1,0 +1,25 @@
+{% load fieldtype %}
+
+<div class="form-group">
+	{{ field.label_tag }}
+
+	{% if form.is_bound %}
+		{% if field.errors %}
+			{% include field|field_template with form=form field=field %}
+
+			{% for error in field.errors %}
+				<div class="invalid-feedback">
+					{{ error }}
+				</div>
+			{% endfor %}
+		{% else %}
+			{% include field|field_template with form=form field=field %}
+		{% endif %}
+	{% else %}
+		{% include field|field_template with form=form field=field %}
+	{% endif %}
+
+	{% if field.help_text %}
+		<small class="form-text text-muted">{{ field.help_text }}</small>
+	{% endif %}
+</div>

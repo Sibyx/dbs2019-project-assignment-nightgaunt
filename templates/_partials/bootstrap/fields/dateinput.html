@@ -1,0 +1,8 @@
+<input
+	type="date"
+	class="form-control {% if form.is_bound %}{% if field.errors %}is-invalid{% else %}is-valid{% endif %}{% endif %}"
+	name="{{ field.html_name }}"
+	placeholder="{{ field.label }}"
+	value="{{ field.value|default_if_none:"" }}"
+	id="{{ field.id_for_label }}"
+>

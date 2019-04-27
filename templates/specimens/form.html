@@ -16,6 +16,19 @@
 			</div>
 		</div>
 
-
+		<div class="row">
+			<div class="col-lg-12">
+				<form
+					method="post"
+					action="{% if specimen %}{% url 'specimens-edit' specimen.id %}{% else %}{% url 'specimens-add' %}{% endif %}"
+				>
+					{% csrf_token %}
+					{% include '_partials/bootstrap/form.html' with form=form %}
+					<button type="submit" class="btn btn-primary">
+						<i class="fas fa-save"></i> {% trans 'Save' %}
+					</button>
+				</form>
+			</div>
+		</div>
 	</div>
 {% endblock %}
