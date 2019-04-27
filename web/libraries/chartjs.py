@@ -1,0 +1,2 @@
+class ChartJS(object):
+    pass

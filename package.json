@@ -8,7 +8,9 @@
 	"dependencies": {
 		"bootstrap": "^4.3.1",
 		"bootstrap-table": "^1.14.2",
+		"chart.js": "^2.8.0",
 		"jquery": "^3.3.1",
+		"moment": "^2.24.0",
 		"popper.js": "^1.14.7",
 		"select2": "^4.0.6-rc.1",
 		"select2-bootstrap4-theme": "^1.0.0"

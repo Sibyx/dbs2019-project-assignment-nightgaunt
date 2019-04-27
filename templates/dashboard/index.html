@@ -47,14 +47,30 @@
 				</ul>
 			</div>
 
-			<div class="col-lg-4">
-
+			<div class="col-lg-8">
+				<canvas id="databaseEvolutionChart" data-chart-type="line"></canvas>
 			</div>
+		</div>
 
-			<div class="col-lg-4">
-
+		<div class="row justify-content-center">
+			<div class="col-lg-6">
+				<canvas id="distributionChart" data-chart-type="pie"></canvas>
 			</div>
 		</div>
 	</div>
+{% endblock %}
+
+{% block javascript %}
+	<script>
+		$(window).on('load', function () {
+			App.Charts.reload('distributionChart', App.Utils.buildUrl("{% url 'dashboard' %}", {
+				chart: 'distributionChart'
+			}));
+
+			App.Charts.reload('databaseEvolutionChart', App.Utils.buildUrl("{% url 'dashboard' %}", {
+				chart: 'databaseEvolutionChart'
+			}));
+		});
+	</script>
 {% endblock %}
 
