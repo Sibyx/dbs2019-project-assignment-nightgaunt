@@ -1,6 +1,6 @@
 from django.urls import path
 
-from web.views import dashboard, boxes, specimens, catalogue, rents
+from web.views import dashboard, boxes, specimens, catalogue, rents, photos
 
 urlpatterns = [
     path('', dashboard.index, name='dashboard'),
@@ -15,6 +15,10 @@ urlpatterns = [
 
     # Specimens
     path('specimens/', specimens.overview, name='specimens-overview'),
+    path('specimens/detail/<uuid:id>/', specimens.detail, name='specimens-detail'),
+    path('specimens/edit/<uuid:id>/', specimens.edit, name='specimens-edit'),
+    path('specimens/remove/<uuid:id>/', specimens.remove, name='specimens-remove'),
+    path('specimens/qr/<uuid:id>/', specimens.qr, name='specimens-qr'),
     path('specimens/add/', specimens.add, name='specimens-add'),
 
     # Catalogue
@@ -22,4 +26,7 @@ urlpatterns = [
 
     # Rents
     path('rents/', rents.overview, name='rents-overview'),
+
+    # Photos
+    path('photos/detail/<uuid:id>/', photos.detail, name='photos-detail'),
 ]

@@ -1,0 +1,145 @@
+{% extends '_layouts/base.html' %}
+
+{% load i18n %}
+{% load snake_case %}
+
+{% block title %}{{ specimen.organism.name }}{% endblock %}
+
+{% block content %}
+	<div class="container">
+
+		<div class="row pt-3">
+			<div class="col-lg-8">
+				<h1>{{ specimen.organism.name }}</h1>
+			</div>
+			<div class="col-lg-4 text-right">
+				<a
+					class="btn btn-danger"
+					role="button"
+					href="{% url 'specimens-remove' specimen.id %}"
+				>
+					<i class="fas fa-trash"></i> {% trans 'Remove specimen' %}
+				</a>
+
+				<a
+					class="btn btn-primary"
+					role="button"
+					href="{% url 'specimens-edit' specimen.id %}"
+				>
+					<i class="fas fa-edit"></i> {% trans 'Edit specimen' %}
+				</a>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-lg-4">
+				<div class="card">
+					<img class="card-img-top" src="{% url 'specimens-qr' specimen.id %}" alt="Specimen QR code">
+					<div class="card-body">
+						<h5 class="card-title">{{ specimen.organism.name }}</h5>
+						<h6 class="card-subtitle mb-2 text-muted">
+							{{ specimen.organism.taxonomic_species.taxonomic_genus.taxonomic_family.name }}
+						</h6>
+						<div class="card-text">
+							<ul class="list-unstyled">
+								<li>
+									<strong>{% trans 'Happened at' %}: </strong>
+									{{ specimen.happened_at }}
+								</li>
+								<li>
+									<strong>{% trans 'Form' %}: </strong>
+									{{ specimen.form }}
+								</li>
+								<li>
+									<strong>{% trans 'Gender' %}: </strong>
+									{{ specimen.gender }}
+								</li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="list-group list-group-flush">
+						<a href="{% url 'boxes-detail' specimen.box.id %}" class="list-group-item list-group-item-action">
+							<i class="fas fa-box"></i> Box
+						</a>
+
+						<a
+							href="https://en.wikipedia.org/wiki/{{ specimen.organism.name|snake_case }}"
+							rel="external"
+							target="_blank"
+							class="list-group-item list-group-item-action"
+						>
+							<i class="fab fa-wikipedia-w"></i> Wikipedia
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-lg-8">
+
+				<div class="row">
+					<div class="col-lg-5">
+						<h5>{% trans 'Taxonomy' %}</h5>
+						<ul class="list-unstyled">
+							<li>
+								<strong>{% trans 'Kingdom' %}: </strong>
+								{{ specimen.organism.taxonomic_species.taxonomic_genus.taxonomic_family.taxonomic_order.taxonomic_class.taxonomic_phylum.kingdom.name }}
+							</li>
+							<li>
+								<strong>{% trans 'Phylum' %}: </strong>
+								{{ specimen.organism.taxonomic_species.taxonomic_genus.taxonomic_family.taxonomic_order.taxonomic_class.taxonomic_phylum.name }}
+							</li>
+							<li>
+								<strong>{% trans 'Class' %}: </strong>
+								{{ specimen.organism.taxonomic_species.taxonomic_genus.taxonomic_family.taxonomic_order.taxonomic_class.name }}
+							</li>
+							<li>
+								<strong>{% trans 'Order' %}: </strong>
+								{{ specimen.organism.taxonomic_species.taxonomic_genus.taxonomic_family.taxonomic_order.name }}
+							</li>
+							<li>
+								<strong>{% trans 'Family' %}: </strong>
+								{{ specimen.organism.taxonomic_species.taxonomic_genus.taxonomic_family.name }}
+							</li>
+							<li>
+								<strong>{% trans 'Genus' %}: </strong>
+								{{ specimen.organism.taxonomic_species.taxonomic_genus.name }}
+							</li>
+						</ul>
+					</div>
+
+					<div class="col-lg-7">
+						<h5>{% trans 'DNA' %}</h5>
+						<p>
+							{{ specimen.dna }}
+						</p>
+
+						<h5>{% trans 'Notes' %}</h5>
+						<p>
+							{{ specimen.notes }}
+						</p>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-lg-12">
+						<h2>{% trans "Photos" %}</h2>
+						{% for photo in specimen.photo_set.all %}
+							<a href="{% url 'photos-detail' photo.id %}" data-toggle="modal" data-target="#ajaxModal">
+								<figure class="figure" style="max-width: 200px;">
+									<img src="{{ photo.path.url }}" class="figure-img img-fluid img-thumbnail" alt="{{ photo.title }}">
+									<figcaption class="figure-caption text-center">{{ photo.title }}</figcaption>
+								</figure>
+							</a>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	{% include '_partials/modal.html' with modal_size='modal-lg' %}
+{% endblock %}
+
+{% block javascript %}
+{% endblock %}

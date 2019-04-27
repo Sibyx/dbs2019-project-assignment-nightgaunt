@@ -2,7 +2,7 @@
 
 {% load i18n %}
 
-{% block title %}{{ _("Login") }}{% endblock %}
+{% block title %}{% trans 'Login' %}{% endblock %}
 
 {% block head %}
 	<style type="text/css">
@@ -33,7 +33,7 @@
 				<form method="post">
 					{% csrf_token %}
 
-					{% include '_partials/bootstrap_form.html' with form=form %}
+					{% include '_partials/bootstrap/form.html' with form=form %}
 
 					<button type="submit" class="btn btn-primary btn-block">
 						<i class="fas fa-sign-in-alt"></i> {% trans "Log in" %}

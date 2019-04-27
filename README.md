@@ -32,7 +32,7 @@ robím merge to `master` vetvy.
 
 Minimálne požiadavky:
 
-- Python 3.6
+- Python 3.7
 - Pipenv
 - PostgreSQL
 - NodeJS & yarn (pre úspešný build front-end časti)
@@ -57,6 +57,7 @@ pipenv install
 - [python-qrcode](https://github.com/lincolnloop/python-qrcode): QR code generator
 - [bootstrap-table](https://bootstrap-table.com/): Bootstrap native datatables
 - [libgravatar](https://github.com/pabluk/libgravatar): Gravatar client
+- [select2](https://select2.org/): Pekné select elementy na steroidoch
 
 ---
 S ❤️ Jakub Dubec (c) 2019
