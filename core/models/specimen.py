@@ -11,8 +11,8 @@ from core.models.user import User
 
 
 class GenderChoice(Enum):
-    MALE = "male"
-    FEMALE = "female"
+    MALE = "Male"
+    FEMALE = "Female"
 
 
 class Specimen(BaseModel):
