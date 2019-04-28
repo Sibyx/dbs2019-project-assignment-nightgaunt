@@ -1,7 +1,7 @@
 {% extends '_layouts/base.html' %}
 
 {% load i18n %}
-{% load snake_case %}
+{% load social %}
 
 {% block title %}{{ specimen.organism.name }}{% endblock %}
 
@@ -64,7 +64,7 @@
 						</a>
 
 						<a
-							href="https://en.wikipedia.org/wiki/{{ specimen.organism.name|snake_case }}"
+							href="{{ specimen.organism.name|wikipedia }}"
 							rel="external"
 							target="_blank"
 							class="list-group-item list-group-item-action"
@@ -83,27 +83,63 @@
 						<ul class="list-unstyled">
 							<li>
 								<strong>{% trans 'Kingdom' %}: </strong>
-								{{ specimen.organism.taxonomic_species.taxonomic_genus.taxonomic_family.taxonomic_order.taxonomic_class.taxonomic_phylum.kingdom.name }}
+								<a
+									href="{{ specimen.organism.taxonomic_species.taxonomic_genus.taxonomic_family.taxonomic_order.taxonomic_class.taxonomic_phylum.kingdom.name|wikipedia }}"
+									rel="external"
+									target="_blank"
+								>
+									{{ specimen.organism.taxonomic_species.taxonomic_genus.taxonomic_family.taxonomic_order.taxonomic_class.taxonomic_phylum.kingdom.name }}
+								</a>
 							</li>
 							<li>
 								<strong>{% trans 'Phylum' %}: </strong>
-								{{ specimen.organism.taxonomic_species.taxonomic_genus.taxonomic_family.taxonomic_order.taxonomic_class.taxonomic_phylum.name }}
+								<a
+									href="{{ specimen.organism.taxonomic_species.taxonomic_genus.taxonomic_family.taxonomic_order.taxonomic_class.taxonomic_phylum.name|wikipedia }}"
+									rel="external"
+									target="_blank"
+								>
+									{{ specimen.organism.taxonomic_species.taxonomic_genus.taxonomic_family.taxonomic_order.taxonomic_class.taxonomic_phylum.name }}
+								</a>
 							</li>
 							<li>
 								<strong>{% trans 'Class' %}: </strong>
-								{{ specimen.organism.taxonomic_species.taxonomic_genus.taxonomic_family.taxonomic_order.taxonomic_class.name }}
+								<a
+									href="{{ specimen.organism.taxonomic_species.taxonomic_genus.taxonomic_family.taxonomic_order.taxonomic_class.name|wikipedia }}"
+									rel="external"
+									target="_blank"
+								>
+									{{ specimen.organism.taxonomic_species.taxonomic_genus.taxonomic_family.taxonomic_order.taxonomic_class.name }}
+								</a>
 							</li>
 							<li>
 								<strong>{% trans 'Order' %}: </strong>
-								{{ specimen.organism.taxonomic_species.taxonomic_genus.taxonomic_family.taxonomic_order.name }}
+								<a
+									href="{{ specimen.organism.taxonomic_species.taxonomic_genus.taxonomic_family.taxonomic_order.name|wikipedia }}"
+									rel="external"
+									target="_blank"
+								>
+									{{ specimen.organism.taxonomic_species.taxonomic_genus.taxonomic_family.taxonomic_order.name }}
+								</a>
 							</li>
 							<li>
 								<strong>{% trans 'Family' %}: </strong>
-								{{ specimen.organism.taxonomic_species.taxonomic_genus.taxonomic_family.name }}
+								<a
+									href="{{ specimen.organism.taxonomic_species.taxonomic_genus.taxonomic_family.name|wikipedia }}"
+									rel="external"
+									target="_blank"
+								>
+									{{ specimen.organism.taxonomic_species.taxonomic_genus.taxonomic_family.name }}
+								</a>
 							</li>
 							<li>
 								<strong>{% trans 'Genus' %}: </strong>
-								{{ specimen.organism.taxonomic_species.taxonomic_genus.name }}
+								<a
+									href="{{ specimen.organism.taxonomic_species.taxonomic_genus.name|wikipedia }}"
+									rel="external"
+									target="_blank"
+								>
+									{{ specimen.organism.taxonomic_species.taxonomic_genus.name }}
+								</a>
 							</li>
 						</ul>
 					</div>

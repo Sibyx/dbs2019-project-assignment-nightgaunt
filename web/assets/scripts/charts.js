@@ -1,7 +1,7 @@
 export const render = (canvasId, payload) => {
-	var canvas = document.getElementById(canvasId);
-	var ctx = canvas.getContext('2d');
-	var myChart = new Chart(ctx, {
+	let canvas = document.getElementById(canvasId);
+	let ctx = canvas.getContext('2d');
+	let myChart = new Chart(ctx, {
 		type: canvas.dataset.chartType,
 		data: payload.data,
 		options: payload.options
