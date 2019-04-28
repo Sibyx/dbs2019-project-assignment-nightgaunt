@@ -8,53 +8,89 @@
 	<div class="container">
 
 		<div class="row pt-3">
-			<div class="col-lg-4">
-				<ul class="list-group">
-					<li class="list-group-item d-flex justify-content-between align-items-center">
-						<a href="{% url 'boxes-overview' %}">
-							<i class="fas fa-boxes"></i> {% trans 'Boxes' %}
-						</a>
-						<span class="badge badge-primary badge-pill">{{ stats.boxes }}</span>
-					</li>
+			<div class="col-lg-12">
 
-					<li class="list-group-item d-flex justify-content-between align-items-center">
-						<a href="{% url 'specimens-overview' %}">
-							<i class="fas fa-spider"></i> {% trans 'Specimens' %}
-						</a>
-						<span class="badge badge-primary badge-pill">{{ stats.specimens }}</span>
-					</li>
+				<div class="card-deck">
+					<div class="card">
+						<div class="card-header">
+							{% trans 'General info' %}
+						</div>
 
-					<li class="list-group-item d-flex justify-content-between align-items-center">
-						<span>
-							<i class="fas fa-bug"></i> {% trans 'Organisms' %}
-						</span>
-						<span class="badge badge-primary badge-pill">{{ stats.organisms }}</span>
-					</li>
+						<div class="card-body text-center">
+							<ul class="list-group">
+								<li class="list-group-item d-flex justify-content-between align-items-center">
+									<a href="{% url 'boxes-overview' %}">
+										<i class="fas fa-boxes"></i> {% trans 'Boxes' %}
+									</a>
+									<span class="badge badge-primary badge-pill">{{ stats.boxes }}</span>
+								</li>
 
-					<li class="list-group-item d-flex justify-content-between align-items-center">
-						<span>
-							<i class="fas fa-images"></i> {% trans 'Photos' %}
-						</span>
-						<span class="badge badge-primary badge-pill">{{ stats.photos }}</span>
-					</li>
+								<li class="list-group-item d-flex justify-content-between align-items-center">
+									<a href="{% url 'specimens-overview' %}">
+										<i class="fas fa-spider"></i> {% trans 'Specimens' %}
+									</a>
+									<span class="badge badge-primary badge-pill">{{ stats.specimens }}</span>
+								</li>
 
-					<li class="list-group-item d-flex justify-content-between align-items-center">
-						<span>
-							<i class="fas fa-users"></i> {% trans 'Users' %}
-						</span>
-						<span class="badge badge-primary badge-pill">{{ stats.users }}</span>
-					</li>
-				</ul>
-			</div>
+								<li class="list-group-item d-flex justify-content-between align-items-center">
+							<span>
+								<i class="fas fa-bug"></i> {% trans 'Organisms' %}
+							</span>
+									<span class="badge badge-primary badge-pill">{{ stats.organisms }}</span>
+								</li>
 
-			<div class="col-lg-8">
-				<canvas id="databaseEvolutionChart" data-chart-type="line"></canvas>
+								<li class="list-group-item d-flex justify-content-between align-items-center">
+							<span>
+								<i class="fas fa-images"></i> {% trans 'Photos' %}
+							</span>
+									<span class="badge badge-primary badge-pill">{{ stats.photos }}</span>
+								</li>
+
+								<li class="list-group-item d-flex justify-content-between align-items-center">
+							<span>
+								<i class="fas fa-users"></i> {% trans 'Users' %}
+							</span>
+									<span class="badge badge-primary badge-pill">{{ stats.users }}</span>
+								</li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="card">
+						<div class="card-header">
+							{% trans 'Cute kitten' %}
+						</div>
+
+						<div class="card-body text-center">
+							<img src="https://placekitten.com/600/300" alt="Kittens" style="width: 100%;">
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 
-		<div class="row justify-content-center">
-			<div class="col-lg-6">
-				<canvas id="distributionChart" data-chart-type="pie"></canvas>
+		<div class="row pt-3">
+			<div class="col-lg-12">
+				<div class="card-deck">
+					<div class="card">
+						<div class="card-header">
+							{% trans 'Organism distribution' %}
+						</div>
+
+						<div class="card-body">
+							<canvas id="distributionChart" data-chart-type="pie"></canvas>
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-header">
+							{% trans 'Collection evolution by time' %}
+						</div>
+
+						<div class="card-body">
+							<canvas id="databaseEvolutionChart" data-chart-type="line"></canvas>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
