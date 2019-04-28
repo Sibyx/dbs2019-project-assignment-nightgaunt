@@ -32,3 +32,36 @@
 		</div>
 	</div>
 {% endblock %}
+
+{% block javascript %}
+	<script>
+
+		function prefillSelect(element) {
+			let selectElement = $(element);
+
+			$.ajax({
+				type: 'GET',
+				url: window.location,
+				data: {
+					'selected': selectElement.data('selected'),
+					'type': selectElement.attr('name')
+				}
+			}).then(function (data) {
+				let option = new Option(data.items[0].text, data.items[0].id, true, true);
+				selectElement.append(option).trigger('change');
+				selectElement.trigger({
+					type: 'select2:select',
+					params: {
+						data: data
+					}
+				});
+			});
+		}
+
+		$(window).on('load', function () {
+			prefillSelect("#id_box");
+			prefillSelect("#id_organism");
+			prefillSelect("#id_gender");
+		});
+	</script>
+{% endblock %}
