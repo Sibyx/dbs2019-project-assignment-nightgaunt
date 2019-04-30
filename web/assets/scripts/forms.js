@@ -14,8 +14,6 @@ $(window).on('load', function () {
 				};
 			},
 			processResults: function (data, params) {
-				console.log(data);
-				console.log(params);
 				return {
 					results: data.items,
 					pagination: {
@@ -24,6 +22,5 @@ $(window).on('load', function () {
 				}
 			},
 		},
-		minimumInputLength: 2,
 	});
 });

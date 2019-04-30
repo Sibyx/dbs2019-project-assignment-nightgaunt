@@ -1,6 +1,7 @@
 import qrcode
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
+from django.forms import model_to_dict
 from django.http import JsonResponse, Http404, HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse
@@ -55,10 +56,41 @@ def add(request):
 
         if specimen_form.is_valid():
             specimen_form.save()
-            redirect('specimens-detail', specimen.id)
+            return redirect('specimens-detail', specimen.id)
 
         return render(request, 'specimens/form.html', {
             'form': specimen_form
+        }, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
+
+    raise Http404()
+
+
+@login_required
+def edit(request, id):
+    try:
+        specimen = Specimen.objects.get(pk=str(id))
+    except Specimen.DoesNotExist:
+        raise Http404()
+
+    if request.is_ajax() and request.GET.get('type', False):
+        return _process_select2(request)
+
+    if request.method == 'GET':
+        specimen_form = SpecimenForm(initial=model_to_dict(specimen))
+        return render(request, 'specimens/form.html', {
+            'form': specimen_form,
+            'specimen': specimen
+        })
+    elif request.method == 'POST':
+        specimen_form = SpecimenForm(request.POST, instance=specimen)
+
+        if specimen_form.is_valid():
+            specimen_form.save()
+            return redirect('specimens-detail', specimen.id)
+
+        return render(request, 'specimens/form.html', {
+            'form': specimen_form,
+            'specimen': specimen
         }, status=status.HTTP_422_UNPROCESSABLE_ENTITY)
 
     raise Http404()
@@ -75,20 +107,6 @@ def detail(request, id):
     }
 
     return render(request, 'specimens/detail.html', context)
-
-
-@login_required
-def edit(request, id):
-    try:
-        specimen = Specimen.objects.get(pk=str(id))
-    except Specimen.DoesNotExist:
-        raise Http404()
-
-    context = {
-        'specimen': specimen
-    }
-
-    return render(request, 'specimens/form.html', context)
 
 
 @login_required
@@ -125,13 +143,53 @@ def _process_select2(request):
     search = request.GET.get('search', '')
     offset = int(request.GET.get('page', 1))
     limit = int(request.GET.get('limit', 10))
+    selected = request.GET.get('selected', None)
     result = []
 
     if request.GET.get('type') == 'box':
+        if selected:
+            item = Box.objects.get(pk=selected)
+
+            return JsonResponse({
+                'items': [{
+                    'id': str(item.id),
+                    'text': str(item)
+                }],
+                'pagination': {
+                    'more': False
+                }
+            })
+
         items = Box.objects.filter(title__icontains=search).order_by('title')
+
     elif request.GET.get('type') == 'organism':
+        if selected:
+            item = Organism.objects.get(pk=selected)
+
+            return JsonResponse({
+                'items': [{
+                    'id': str(item.id),
+                    'text': str(item)
+                }],
+                'pagination': {
+                    'more': False
+                }
+            })
+
         items = Organism.objects.filter(name__icontains=search).order_by('name')
     elif request.GET.get('type') == 'gender':
+        if selected:
+            return JsonResponse({
+                'items': [{
+                    'id': selected,
+                    'text': selected,
+                    'selected': True
+                }],
+                'pagination': {
+                    'more': False
+                }
+            })
+
         for tag in GenderChoice:
             result.append({
                 'id': tag.value,

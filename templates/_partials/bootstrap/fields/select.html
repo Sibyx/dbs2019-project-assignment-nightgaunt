@@ -2,5 +2,6 @@
 	class="form-control {% if form.is_bound %}{% if field.errors %}is-invalid{% else %}is-valid{% endif %}{% endif %}"
 	name="{{ field.html_name }}"
 	id="{{ field.id_for_label }}"
+	data-selected="{{ field.value|default_if_none:"" }}"
 >
 </select>
