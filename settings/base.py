@@ -86,12 +86,12 @@ DATABASES = {
 }
 
 DEMONSTRATION = {
-    'BOXES': 1000,
+    'BOXES': 100000,
     'SPECIMENS': {
-        'MIN': 5,
+        'MIN': 10,
         'MAX': 20
     },
-    'PHOTOS': 5
+    'PHOTOS': 1
 }
 
 # Password validation

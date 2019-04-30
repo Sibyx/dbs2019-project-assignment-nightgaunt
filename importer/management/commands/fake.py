@@ -92,7 +92,7 @@ class Command(BaseCommand):
         data = io.BytesIO()
 
         rh = Robohash(filename)
-        rh.assemble(roboset='any', sizex=1024, sizey=1024)
+        rh.assemble(roboset='any', sizex=256, sizey=256)
         rh.img.save(data, format='PNG')
 
         file = InMemoryUploadedFile(data, None, filename, 'image/png', rh.img.size, None)
