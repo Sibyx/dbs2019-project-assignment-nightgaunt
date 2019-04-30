@@ -24,9 +24,12 @@
 				>
 					{% csrf_token %}
 					{% include '_partials/bootstrap/form.html' with form=form %}
-					<button type="submit" class="btn btn-primary">
+
+					<div class="form-group text-right">
+						<button type="submit" class="btn btn-primary">
 						<i class="fas fa-save"></i> {% trans 'Save' %}
 					</button>
+					</div>
 				</form>
 			</div>
 		</div>
