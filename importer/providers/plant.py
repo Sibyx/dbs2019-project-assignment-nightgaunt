@@ -22,4 +22,4 @@ class PlantProvider(BaseProvider):
                 self.dataset['families'].append(row[0])
 
     def plant_family(self) -> str:
-        return f"{random.choice(self.dataset.get('families', []))} {random.randint(1, 42)}"
+        return f"{random.choice(self.dataset.get('families', []))} {random.randint(1, 100000)}"
