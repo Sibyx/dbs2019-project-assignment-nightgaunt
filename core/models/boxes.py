@@ -12,7 +12,7 @@ class Box(BaseModel):
         db_table = 'boxes'
 
     creator = models.ForeignKey(User, on_delete=models.CASCADE)
-    title = models.CharField(max_length=100, unique=True)
+    title = models.CharField(max_length=100, unique=True, db_index=True)
     description = models.TextField(null=True)
 
     def __str__(self):

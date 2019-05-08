@@ -12,7 +12,7 @@ class TaxonomicSubspecies(BaseModel):
         unique_together = ("taxonomic_species", "name")
 
     taxonomic_species = models.ForeignKey(TaxonomicSpecies, on_delete=models.CASCADE)
-    name = models.CharField(max_length=45)
+    name = models.CharField(max_length=45, db_index=True)
 
     def __str__(self):
         return self.name

@@ -13,7 +13,7 @@ class Organism(BaseModel):
 
     taxonomic_species = models.ForeignKey(TaxonomicSpecies, on_delete=models.CASCADE)
     taxonomic_subspecies = models.ForeignKey(TaxonomicSubspecies, on_delete=models.CASCADE, null=True)
-    name = models.CharField(max_length=150)
+    name = models.CharField(max_length=150, db_index=True)
     author = models.CharField(max_length=200, null=True)
     year = models.PositiveSmallIntegerField(null=True)  # pozri sa ci neexituje typ, s ktorym by sa robilo lepsie
 
