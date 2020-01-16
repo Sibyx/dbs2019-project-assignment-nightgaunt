@@ -6,7 +6,7 @@ warnings.filterwarnings(action='ignore', module='.*paramiko.*')
 
 PROJECT_NAME = "mdns"
 PROJECT_PATH = "~/www"
-REPO_URL = "git@github.com:fiit-dbs-2019/dbs2019-project-assignment-nightgaunt.git"
+REPO_URL = "git@github.com:Sibyx/mdns.git"
 BRANCH = 'master'
 
 

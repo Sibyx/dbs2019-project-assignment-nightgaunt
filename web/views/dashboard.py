@@ -14,11 +14,16 @@ def index(request):
         chart_type = request.GET.get('chart')
 
         if chart_type == 'distributionChart':
+            lookup = 'organism__taxonomic_species__taxonomic_genus__taxonomic_family__taxonomic_order__taxonomic_class'
+            excluding = {
+                f"{lookup}__name__isnull": True,
+                f"{lookup}__name__exact": '',
+                f"{lookup}__isnull": True
+            }
+
             distribution = list(
-                Specimen.objects.values(taxonomic_class=F(
-                    'organism__taxonomic_species__taxonomic_genus__taxonomic_family__taxonomic_order__taxonomic_class__name'
-                ))
-                    .annotate(count=Count('organism__taxonomic_species__taxonomic_genus__taxonomic_family__taxonomic_order__taxonomic_class'))
+                Specimen.objects.exclude(**excluding).values(taxonomic_class=F(f"{lookup}__name")).annotate(
+                    count=Count(lookup))
             )
 
             return JsonResponse({
