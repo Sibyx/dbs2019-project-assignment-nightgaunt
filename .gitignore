@@ -13,3 +13,5 @@
 /static/bundle.js.map
 /media/*
 !/media/.gitkeep
+/.deploy/*.json
+!.deploy/example.json

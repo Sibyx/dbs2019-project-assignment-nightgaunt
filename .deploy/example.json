@@ -1,0 +1,20 @@
+{
+	"ssh": {
+		"host": "example.com",
+		"port": 22,
+		"user": "mdns",
+		"private_key": ""
+	},
+	"env": {
+		"DJANGO_SETTINGS_MODULE": "settings.production",
+		"DATABASE_HOST": "127.0.0.1",
+		"DATABASE_PORT": 5432,
+		"DATABASE_USER": "mdns",
+		"DATABASE_PASSWORD": "",
+		"DATABASE_NAME": "mdns",
+		"BASE_URL": "https://mdns.example.com"
+	},
+	"revision": "master",
+	"deploy_to": "/var/www/mdns",
+	"interpreter": "/usr/bin/python3"
+}
