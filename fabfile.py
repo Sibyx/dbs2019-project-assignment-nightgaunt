@@ -180,7 +180,7 @@ def organisms(ctx, destination):
 
     # Move to project folder
     with ctx.cd(f"{config['deploy_to']}/current"):
-        ctx.put("tmp/data.csv", f"tmp")
+        ctx.put("tmp/data.csv", f"{config['deploy_to']}/current/tmp")
 
         ctx.run(
             f"DJANGO_SETTINGS_MODULE={config['env']['DJANGO_SETTINGS_MODULE']} "

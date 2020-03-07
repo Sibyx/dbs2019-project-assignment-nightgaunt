@@ -86,7 +86,7 @@ DATABASES = {
 }
 
 DEMONSTRATION = {
-    'BOXES': 100000,
+    'BOXES': 10000,
     'SPECIMENS': {
         'MIN': 10,
         'MAX': 20
