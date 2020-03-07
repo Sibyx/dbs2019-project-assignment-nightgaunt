@@ -16,7 +16,7 @@ newrelic = "*"
 sentry-sdk = "*"
 fabric = "==2.*"
 faker = "==1.*"
-robohash = "*"
+robohash = "==1.0"
 
 [requires]
 python_version = "3.7"
