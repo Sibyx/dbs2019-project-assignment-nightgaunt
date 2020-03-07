@@ -90,7 +90,7 @@ def deploy(ctx, destination):
         # Install & update dependencies
         ctx.run(f"{shared_env}/bin/pip install --upgrade pip")
         ctx.run(f"{shared_env}/bin/pip install --upgrade pipfile-requirements")
-        ctx.run(f"{shared_env}/bin/pipfile2req -s Pipfile.lock > requirements.txt")
+        ctx.run(f"{shared_env}/bin/pipfile2req Pipfile.lock > requirements.txt")
         ctx.run(f"{shared_env}/bin/pip install -r requirements.txt")
 
         # Create .env file
@@ -134,6 +134,14 @@ def deploy(ctx, destination):
     # Clean old releases
     with ctx.cd(f"{config['deploy_to']}/releases"):
         ctx.run(f"ls -t . | sort -r | tail -n +{KEEP_RELEASES + 1} | xargs rm -rf --")
+
+
+@task
+def clean(ctx, destination):
+    config = _parse_config(destination)
+    ctx = _get_connection(ctx, config['ssh'])
+
+    ctx.run(f"rm -rf {config['deploy_to']}")
 
 
 @task

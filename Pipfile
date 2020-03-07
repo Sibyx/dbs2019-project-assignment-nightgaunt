@@ -14,8 +14,6 @@ gunicorn = "*"
 libgravatar = "*"
 newrelic = "*"
 sentry-sdk = "*"
-
-[dev-packages]
 fabric = "==2.*"
 faker = "==1.*"
 robohash = "*"
