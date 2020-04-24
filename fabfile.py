@@ -64,7 +64,7 @@ def setup(ctx, destination):
         ctx.run(f"{config['interpreter']} -m venv shared/env")
 
         # Install deployment tools
-        ctx.run(f"{shared_env}/bin/pip install pipfile-requirements")
+        ctx.run(f"{shared_env}/bin/pip install pipfile-requirements --no-cache-dir")
 
 
 @task
@@ -88,10 +88,10 @@ def deploy(ctx, destination):
         ctx.run("git pull")
 
         # Install & update dependencies
-        ctx.run(f"{shared_env}/bin/pip install --upgrade pip")
-        ctx.run(f"{shared_env}/bin/pip install --upgrade pipfile-requirements")
+        ctx.run(f"{shared_env}/bin/pip install --upgrade --no-cache-dir pip")
+        ctx.run(f"{shared_env}/bin/pip install --upgrade --no-cache-dir pipfile-requirements")
         ctx.run(f"{shared_env}/bin/pipfile2req Pipfile.lock > requirements.txt")
-        ctx.run(f"{shared_env}/bin/pip install -r requirements.txt")
+        ctx.run(f"{shared_env}/bin/pip install -r requirements.txt --no-cache-dir")
 
         # Create .env file
         ctx.run("touch .env")
